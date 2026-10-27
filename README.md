@@ -110,6 +110,23 @@ Las pruebas instrumentadas requieren un dispositivo o emulador conectado:
 
 Su ejecución es independiente de los tests unitarios.
 
+## Integración continua
+
+El workflow Android CI se ejecuta con cada push a `main`, en los pull
+requests hacia `main` y mediante ejecución manual desde GitHub Actions.
+
+Utiliza Ubuntu, Java 25 y el Gradle Wrapper del repositorio para:
+
+- Compilar el APK debug.
+- Ejecutar los tests unitarios.
+- Ejecutar Android Lint.
+
+Los informes generados se conservan como artefactos durante siete días,
+también cuando falla alguna comprobación.
+
+Las pruebas instrumentadas y la distribución de versiones todavía no
+forman parte del workflow.
+
 ## Estructura y decisiones
 
 Actualmente existe un único módulo Android: `app`.
@@ -120,9 +137,10 @@ Actualmente existe un único módulo Android: `app`.
 - `src/test/`: pruebas unitarias locales.
 - `src/androidTest/`: pruebas instrumentadas.
 
-La organización de las funcionalidades y sus capas se incorporará conforme
-existan casos concretos. Este incremento todavía no incluye repositorios,
-ViewModels, inyección de dependencias ni fuentes de datos.
+Hilt está configurado en la aplicación y en la actividad principal.
+
+La organización de las funcionalidades, sus ViewModels, repositorios y
+fuentes de datos se incorporará junto con los primeros flujos funcionales.
 
 Se mantiene la configuración inicial de herramientas validada mediante
 compilación, tests unitarios y ejecución manual de la plantilla.

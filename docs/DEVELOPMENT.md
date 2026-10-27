@@ -61,7 +61,6 @@ como completado cuando esté implementado y comprobado.
 
 Las ideas de esta sección no constituyen compromisos de implementación.
 
-- [ ] Añadir integración continua para compilación y comprobaciones.
 - [ ] Preparar la distribución en Google Play cuando exista una versión apta.
 
 ## Base de dependencias
@@ -83,3 +82,25 @@ Una limpieza y reconstrucción sin caché completó correctamente.
 La compilación habitual posterior también pasó, reutilizando la caché
 de configuración. No se modificaron versiones para resolver el fallo.
 La causa exacta no quedó determinada.
+
+## Integración continua
+
+Se incorpora `.github/workflows/android-ci.yml` para comprobar el proyecto
+en un entorno Linux independiente del entorno local de desarrollo.
+
+Alcance:
+
+- Compilación debug.
+- Tests unitarios.
+- Android Lint.
+- Conservación de informes durante siete días.
+- Ejecución por push a main, pull request y disparador manual.
+
+Pendientes de verificación:
+
+- [ ] Primera ejecución correcta en GitHub Actions.
+- [ ] Comprobar los informes descargables.
+- [ ] Añadir el badge al README.
+
+Las pruebas instrumentadas y la distribución quedan para incrementos
+posteriores.
