@@ -1,5 +1,7 @@
 # Enciclopedia de Arda
 
+[![Android CI](https://github.com/cgaraydev/enciclopedia-de-arda/actions/workflows/android-ci.yml/badge.svg?branch=main)](https://github.com/cgaraydev/enciclopedia-de-arda/actions/workflows/android-ci.yml)
+
 Aplicación Android sobre el universo de J. R. R. Tolkien, desarrollada con
 Kotlin y Jetpack Compose.
 

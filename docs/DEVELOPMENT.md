@@ -30,18 +30,6 @@ Cada incremento debe:
 Esta sección se actualizará durante el desarrollo. Un elemento se marca
 como completado cuando esté implementado y comprobado.
 
-### Base del proyecto
-
-- [x] Crear el repositorio público.
-- [x] Crear el proyecto Android con Kotlin y Compose.
-- [x] Comprobar la compilación debug de la plantilla.
-- [x] Ejecutar los tests unitarios de la plantilla y la tarea de lint.
-- [x] Ejecutar manualmente la plantilla.
-- [x] Sustituir el saludo de la plantilla por la bienvenida de la aplicación.
-- [x] Verificar el nombre visible de la aplicación.
-- [x] Validar la pantalla de bienvenida.
-- [x] Incorporar el README y revisar los archivos que se versionan.
-- [x] Realizar el primer commit y push.
 
 ### Próximo incremento
 
