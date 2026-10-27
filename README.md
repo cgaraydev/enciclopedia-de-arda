@@ -8,20 +8,19 @@ personal anterior. El objetivo es avanzar mediante incrementos pequeños,
 con decisiones técnicas documentadas, comprobaciones y commits que cierren
 cada etapa.
 
-## Estado actual
+## Estado del proyecto
 
-Proyecto en fase inicial.
+En desarrollo inicial. Actualmente incluye la configuración base de Android
+y una pantalla de bienvenida con Jetpack Compose.
 
-La aplicación dispone de una pantalla de bienvenida. Todavía no incluye
-contenido de la enciclopedia, navegación entre secciones ni persistencia.
+El catálogo de contenido, la navegación y la persistencia se incorporarán
+en los siguientes incrementos.
 
-## Objetivos
+## Próximos objetivos
 
-- Construir una aplicación Android mantenible y fácil de comprender.
-- Aplicar Kotlin y Jetpack Compose en funcionalidades completas.
-- Incorporar pruebas acordes con el comportamiento implementado.
-- Documentar decisiones, limitaciones y avances.
-- Utilizar el proyecto como aprendizaje y parte del portafolio profesional.
+- Implementar el catálogo de personajes y sus fichas de detalle.
+- Incorporar progresivamente otras secciones de la enciclopedia.
+- Añadir favoritos y juegos.
 
 ## Tecnologías y configuración
 
@@ -128,68 +127,3 @@ ViewModels, inyección de dependencias ni fuentes de datos.
 Se mantiene la configuración inicial de herramientas validada mediante
 compilación, tests unitarios y ejecución manual de la plantilla.
 
-## Forma de trabajo
-
-El desarrollo se realiza en Android Studio y se versiona con Git y GitHub.
-
-Se utiliza asistencia de IA para discutir decisiones, revisar código y
-preparar implementaciones y documentación. Los cambios se revisan y
-comprueban antes de incorporarlos al repositorio.
-
-Cada incremento debe:
-
-1. Tener un objetivo concreto.
-2. Implementar únicamente el alcance acordado.
-3. Ejecutar las comprobaciones pertinentes.
-4. Actualizar este README cuando cambie el estado del proyecto.
-5. Cerrarse con un commit descriptivo.
-
-## Limitaciones actuales
-
-- Sin catálogo de personajes ni otras secciones de contenido.
-- Sin navegación funcional.
-- Sin almacenamiento de favoritos.
-- Sin juegos integrados.
-- Las pruebas iniciales proceden de la plantilla y no validan funcionalidades
-  de la enciclopedia.
-- Sin validación de una versión release destinada a distribución.
-- Sin publicación de esta reconstrucción en Google Play.
-
-## Seguimiento y roadmap
-
-Esta sección se actualizará durante el desarrollo. Un elemento se marca
-como completado cuando esté implementado y comprobado.
-
-### Base del proyecto
-
-- [x] Crear el repositorio público.
-- [x] Crear el proyecto Android con Kotlin y Compose.
-- [x] Comprobar la compilación debug de la plantilla.
-- [x] Ejecutar los tests unitarios de la plantilla y la tarea de lint.
-- [x] Ejecutar manualmente la plantilla.
-- [ ] Sustituir el saludo de la plantilla por la bienvenida de la aplicación.
-- [ ] Verificar el nombre visible de la aplicación.
-- [ ] Validar la pantalla de bienvenida.
-- [ ] Incorporar el README y revisar los archivos que se versionan.
-- [ ] Realizar el primer commit y push.
-
-### Próximo incremento
-
-- [ ] Definir el alcance de la primera funcionalidad: personajes.
-- [ ] Acordar su modelo, fuente de datos y organización.
-- [ ] Implementar y comprobar el primer flujo funcional.
-
-### Funcionalidades pendientes de concretar
-
-- [ ] Otras secciones de la enciclopedia.
-- [ ] Favoritos.
-- [ ] Calendario.
-- [ ] Quiz.
-- [ ] Juego de memoria.
-
-### Ideas por evaluar
-
-Las ideas de esta sección no constituyen compromisos de implementación.
-
-- [ ] Añadir integración continua para compilación y comprobaciones.
-- [ ] Preparar la distribución en Google Play cuando exista una versión apta.
