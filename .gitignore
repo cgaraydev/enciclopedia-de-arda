@@ -1,0 +1,22 @@
+# Configuración local de Android
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+
+# Archivos generados por Gradle
+.gradle/
+.kotlin/
+**/build/
+
+# Compilación nativa
+.externalNativeBuild/
+.cxx/
+
+# Capturas locales
+/captures/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
