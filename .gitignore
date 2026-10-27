@@ -20,3 +20,10 @@ local.properties
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# Catálogo privado: no se publica ni se empaqueta automáticamente
+/private-content/
+
+# En assets solo se admite el contenido público de demostración
+/app/src/main/assets/*
+!/app/src/main/assets/demo/
