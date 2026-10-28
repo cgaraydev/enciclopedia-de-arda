@@ -1,5 +1,6 @@
-package com.cgaraydev.enciclopediadearda.feature.characters.data
+package com.cgaraydev.enciclopediadearda
 
+import com.cgaraydev.enciclopediadearda.feature.characters.data.CharacterCatalogDecoder
 import kotlinx.serialization.SerializationException
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
