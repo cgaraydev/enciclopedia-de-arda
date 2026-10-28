@@ -27,6 +27,7 @@ import com.cgaraydev.enciclopediadearda.R
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplorerCard
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
 
 @Composable
@@ -123,6 +124,7 @@ fun CharactersScreen(
                                 key = { it.id }
                             ) { character ->
                                 Card(
+                                    onClick = { onCharacterClick(character.id) },
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(horizontal = 16.dp)

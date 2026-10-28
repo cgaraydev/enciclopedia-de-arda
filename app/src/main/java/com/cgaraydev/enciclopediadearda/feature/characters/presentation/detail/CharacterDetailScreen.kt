@@ -96,16 +96,16 @@ fun CharacterDetailScreen(
                 ),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-//                Text(
-//                    text = stringResource(
-//                        if (uiState == CharacterDetailUiState.NotFound) {
-//                            R.string.item_not_found
-//                        } else {
-//                            R.string.character_load_error
-//                        }
-//                    ),
-//                    textAlign = TextAlign.Center
-//                )
+                Text(
+                    text = stringResource(
+                        if (uiState == CharacterDetailUiState.NotFound) {
+                            R.string.item_not_found
+                        } else {
+                            R.string.character_load_error
+                        }
+                    ),
+                    textAlign = TextAlign.Center
+                )
 
                 if (uiState == CharacterDetailUiState.Error) {
                     Button(onClick = onRetry) {
