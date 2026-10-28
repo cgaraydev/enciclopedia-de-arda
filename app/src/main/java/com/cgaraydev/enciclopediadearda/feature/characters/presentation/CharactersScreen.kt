@@ -31,6 +31,7 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
 
 @Composable
 fun CharactersRoute(
+    onCharacterClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CharactersViewModel = hiltViewModel()
 ) {
@@ -39,6 +40,7 @@ fun CharactersRoute(
     CharactersScreen(
         uiState = uiState,
         onRetry = viewModel::retry,
+        onCharacterClick = onCharacterClick,
         modifier = modifier
     )
 }
@@ -47,6 +49,7 @@ fun CharactersRoute(
 fun CharactersScreen(
     uiState: CharactersUiState,
     onRetry: () -> Unit,
+    onCharacterClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -101,6 +104,19 @@ fun CharactersScreen(
 
                             item(key = "characters-introduction-spacing") {
                                 Spacer(modifier = Modifier.height(40.dp))
+                            }
+                            item(key = "random-character") {
+                                RandomExplorerCard(
+                                    onClick = {
+                                        uiState.characters.randomOrNull()?.let { character ->
+                                            onCharacterClick(character.id)
+                                        }
+                                    }
+                                )
+                            }
+
+                            item(key = "random-character-spacing") {
+                                Spacer(Modifier.height(40.dp))
                             }
                             items(
                                 items = uiState.characters,
