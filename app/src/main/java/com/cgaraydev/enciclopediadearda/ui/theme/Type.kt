@@ -69,5 +69,12 @@ val TolkienTypography = Typography(
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
+    bodyMedium = TextStyle(
+        fontFamily = Cardo,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.25.sp
+    ),
 )
 

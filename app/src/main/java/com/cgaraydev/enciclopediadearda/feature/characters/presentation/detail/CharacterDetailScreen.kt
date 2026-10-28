@@ -36,6 +36,7 @@ import com.cgaraydev.enciclopediadearda.R
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.HtmlText
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.CharacteristicsSection
 
 @Composable
 fun CharacterDetailRoute(
@@ -120,13 +121,7 @@ fun CharacterDetailScreen(
         is CharacterDetailUiState.Content -> {
             val scrollState = rememberScrollState()
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp)
-                    .animateContentSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            Column(modifier = modifier) {
                 CharacterDetailHeader(
                     title = uiState.character.name,
                     scrollState = scrollState
@@ -145,6 +140,27 @@ fun CharacterDetailScreen(
                         detailName = uiState.character.name
                     )
                     Spacer(Modifier.height(20.dp))
+
+                    CharacteristicsSection(
+                        labelValuePairs = listOf(
+                            stringResource(R.string.character_other_names) to
+                                    uiState.character.otherNames,
+                            stringResource(R.string.character_birth) to
+                                    uiState.character.birth,
+                            stringResource(R.string.character_death) to
+                                    uiState.character.death,
+                            stringResource(R.string.character_titles) to
+                                    uiState.character.titles,
+                            stringResource(R.string.character_partner) to
+                                    uiState.character.love,
+                            stringResource(R.string.character_family) to
+                                    uiState.character.family,
+                            stringResource(R.string.character_house) to
+                                    uiState.character.house
+                        ),
+                        onLinkClick = onLinkClick
+                    )
+
                     uiState.character.biographyHtml
                         ?.takeIf { it.isNotBlank() }
                         ?.let { biography ->
@@ -153,6 +169,20 @@ fun CharacterDetailScreen(
                             )
                             HtmlText(
                                 html = biography,
+                                onLinkClick = onLinkClick,
+                                modifier = Modifier.padding(horizontal = 16.dp)
+                            )
+                            Spacer(Modifier.height(20.dp))
+                        }
+
+                    uiState.character.etymologyHtml
+                        ?.takeIf { it.isNotBlank() }
+                        ?.let { etymology ->
+                            CategoriesHeader(
+                                textRes = R.string.etymology
+                            )
+                            HtmlText(
+                                html = etymology,
                                 onLinkClick = onLinkClick,
                                 modifier = Modifier.padding(horizontal = 16.dp)
                             )
@@ -176,6 +206,7 @@ private fun CharacterDetailHeader(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp)
             .animateContentSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
