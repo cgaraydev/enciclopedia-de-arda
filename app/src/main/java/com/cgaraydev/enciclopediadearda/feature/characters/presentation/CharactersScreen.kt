@@ -1,0 +1,117 @@
+package com.cgaraydev.enciclopediadearda.feature.characters.presentation
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.cgaraydev.enciclopediadearda.R
+
+@Composable
+fun CharactersRoute(
+    modifier: Modifier = Modifier,
+    viewModel: CharactersViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    CharactersScreen(
+        uiState = uiState,
+        onRetry = viewModel::retry,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun CharactersScreen(
+    uiState: CharactersUiState,
+    onRetry: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = stringResource(R.string.characters_title),
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            when (uiState) {
+                CharactersUiState.Loading -> {
+                    CircularProgressIndicator()
+                }
+
+                CharactersUiState.Error -> {
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = stringResource(R.string.characters_load_error),
+                            textAlign = TextAlign.Center
+                        )
+                        Button(onClick = onRetry) {
+                            Text(stringResource(R.string.retry))
+                        }
+                    }
+                }
+
+                is CharactersUiState.Content -> {
+                    if (uiState.characters.isEmpty()) {
+                        Text(
+                            text = stringResource(R.string.characters_empty),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(24.dp)
+                        )
+                    } else {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            contentPadding = PaddingValues(
+                                start = 16.dp,
+                                end = 16.dp,
+                                bottom = 16.dp
+                            ),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            items(
+                                items = uiState.characters,
+                                key = { it.id }
+                            ) { character ->
+                                Card(modifier = Modifier.fillMaxWidth()) {
+                                    Text(
+                                        text = character.name,
+                                        style = MaterialTheme.typography.titleMedium,
+                                        modifier = Modifier.padding(16.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

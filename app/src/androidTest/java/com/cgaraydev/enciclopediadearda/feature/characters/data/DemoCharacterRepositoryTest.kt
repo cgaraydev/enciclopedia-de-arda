@@ -1,10 +1,7 @@
-package com.cgaraydev.enciclopediadearda.feature.characters
+package com.cgaraydev.enciclopediadearda.feature.characters.data
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.cgaraydev.enciclopediadearda.feature.characters.data.CharacterAssetDataSource
-import com.cgaraydev.enciclopediadearda.feature.characters.data.CharacterCatalogDecoder
-import com.cgaraydev.enciclopediadearda.feature.characters.data.DemoCharacterRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

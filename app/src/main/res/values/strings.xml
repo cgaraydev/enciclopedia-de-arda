@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Enciclopedia de Arda</string>
-    <string name="welcome_description">Explora el mundo de Tolkien. La enciclopedia está en construcción.</string>
+    <string name="characters_title">Personajes</string>
+    <string name="characters_load_error">No se pudieron cargar los personajes.</string>
+    <string name="characters_empty">No hay personajes disponibles.</string>
+    <string name="retry">Reintentar</string>
 </resources>
