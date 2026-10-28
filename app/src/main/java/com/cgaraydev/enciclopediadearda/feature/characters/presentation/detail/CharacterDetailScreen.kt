@@ -34,6 +34,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cgaraydev.enciclopediadearda.R
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.HtmlText
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
 
 @Composable
 fun CharacterDetailRoute(
@@ -135,9 +136,13 @@ fun CharacterDetailScreen(
                     uiState.character.biographyHtml
                         ?.takeIf { it.isNotBlank() }
                         ?.let { biography ->
+                            CategoriesHeader(
+                                textRes = R.string.biography
+                            )
                             HtmlText(
                                 html = biography,
-                                onLinkClick = onLinkClick
+                                onLinkClick = onLinkClick,
+                                modifier = Modifier.padding(horizontal = 16.dp)
                             )
                             Spacer(Modifier.height(20.dp))
                         }
