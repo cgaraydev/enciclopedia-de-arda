@@ -10,4 +10,6 @@
     <string name="character_load_error">No se pudo cargar el personaje.</string>
     <string name="biography">Biografía</string>
     <string name="divider_runes">ᚠᛇᚱᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾ</string>
+    <string name="image_content_description">Imagen de %1$s</string>
+    <string name="loading_indicator">Indicador de carga</string>
 </resources>

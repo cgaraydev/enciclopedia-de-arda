@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.DetailImage
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -119,7 +120,13 @@ fun CharacterDetailScreen(
         is CharacterDetailUiState.Content -> {
             val scrollState = rememberScrollState()
 
-            Column(modifier = modifier) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                    .animateContentSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 CharacterDetailHeader(
                     title = uiState.character.name,
                     scrollState = scrollState
@@ -133,6 +140,11 @@ fun CharacterDetailScreen(
                         .fillMaxWidth()
                         .verticalScroll(scrollState)
                 ) {
+                    DetailImage(
+                        imagePath = uiState.character.imagePath,
+                        detailName = uiState.character.name
+                    )
+                    Spacer(Modifier.height(20.dp))
                     uiState.character.biographyHtml
                         ?.takeIf { it.isNotBlank() }
                         ?.let { biography ->
