@@ -4,4 +4,5 @@
     <string name="characters_load_error">No se pudieron cargar los personajes.</string>
     <string name="characters_empty">No hay personajes disponibles.</string>
     <string name="retry">Reintentar</string>
+    <string name="characters_intro">Desde Melkor hasta Frodo, de Galadriel a Sauron: los personajes de Tolkien son más que nombres en una página, son símbolos vivos de poder, sacrificio y esperanza.</string>
 </resources>

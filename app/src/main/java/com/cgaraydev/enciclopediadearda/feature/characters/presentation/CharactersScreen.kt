@@ -24,6 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cgaraydev.enciclopediadearda.R
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
 
 @Composable
 fun CharactersRoute(
@@ -46,11 +50,11 @@ fun CharactersScreen(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        Text(
-            text = stringResource(R.string.characters_title),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(16.dp)
+        ScreenHeader(
+            labelRes = R.string.characters_title,
+            imageRes = R.drawable.header_characters
         )
+        Spacer(modifier = Modifier.height(40.dp))
 
         Box(
             modifier = Modifier
@@ -89,24 +93,31 @@ fun CharactersScreen(
                     } else {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize(),
-                            contentPadding = PaddingValues(
-                                start = 16.dp,
-                                end = 16.dp,
-                                bottom = 16.dp
-                            ),
-                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                            contentPadding = PaddingValues(bottom = 16.dp)
                         ) {
+                            item(key = "characters-introduction") {
+                                IntroText(R.string.characters_intro)
+                            }
+
+                            item(key = "characters-introduction-spacing") {
+                                Spacer(modifier = Modifier.height(40.dp))
+                            }
                             items(
                                 items = uiState.characters,
                                 key = { it.id }
                             ) { character ->
-                                Card(modifier = Modifier.fillMaxWidth()) {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp)
+                                ) {
                                     Text(
                                         text = character.name,
                                         style = MaterialTheme.typography.titleMedium,
                                         modifier = Modifier.padding(16.dp)
                                     )
                                 }
+                                Spacer(modifier = Modifier.height(12.dp))
                             }
                         }
                     }
