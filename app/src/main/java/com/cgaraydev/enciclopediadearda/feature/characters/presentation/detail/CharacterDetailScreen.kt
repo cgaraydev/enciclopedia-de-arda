@@ -39,6 +39,8 @@ import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CharacteristicsSection
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.WikiLinksSection
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
+import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoriteButtonRoute
 
 
 @Composable
@@ -141,6 +143,10 @@ fun CharacterDetailScreen(
                     DetailImage(
                         imagePath = uiState.character.imagePath,
                         detailName = uiState.character.name
+                    )
+                    FavoriteButtonRoute(
+                        articleType = ArticleType.CHARACTER,
+                        articleId = uiState.character.id
                     )
                     Spacer(Modifier.height(20.dp))
 

@@ -33,4 +33,7 @@
     <string name="wiki_el_fenomeno">El Fenómeno</string>
     <string name="wiki_website">Sitio web oficial</string>
     <string name="wiki_imdb">IMDb</string>
+    <string name="add_to_favorites">Añadir a favoritos</string>
+    <string name="remove_from_favorites">Quitar de favoritos</string>
+    <string name="favorites_access_error">No se pudo acceder a tus favoritos. Inténtalo de nuevo.</string>
 </resources>
