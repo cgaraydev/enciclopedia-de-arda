@@ -25,4 +25,12 @@
     <string name="images">Imágenes</string>
     <string name="gallery_image_description">Imagen %1$d de %2$d</string>
     <string name="error_loading_image">No se pudo cargar la imagen</string>
+    <string name="external_links">Enlaces externos</string>
+    <string name="wiki_tolkien_gateway">Tolkien Gateway (en)</string>
+    <string name="wiki_lotr_fandom_en">LotR Fandom (en)</string>
+    <string name="wiki_lotr_fandom_es">LotR Fandom (es)</string>
+    <string name="wiki_wikipedia">Wikipedia</string>
+    <string name="wiki_el_fenomeno">El Fenómeno</string>
+    <string name="wiki_website">Sitio web oficial</string>
+    <string name="wiki_imdb">IMDb</string>
 </resources>

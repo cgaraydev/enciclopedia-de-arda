@@ -18,7 +18,11 @@
       {
         "url": "characters/aegnor/aegnor02.webp"
       }
-    ]
+    ],
+    "wikiUrl": {
+      "website": "https://github.com/cgaraydev/enciclopedia-de-arda",
+      "wikipedia": ""
+    }
   },
   {
     "id": "demo-002",

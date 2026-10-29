@@ -76,5 +76,12 @@ val TolkienTypography = Typography(
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
     ),
+    titleSmall = TextStyle(
+        fontFamily = RingBearer,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.5.sp
+    ),
 )
 

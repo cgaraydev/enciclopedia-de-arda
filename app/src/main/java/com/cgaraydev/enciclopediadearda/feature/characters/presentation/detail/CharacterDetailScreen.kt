@@ -38,6 +38,8 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.HtmlText
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CharacteristicsSection
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.WikiLinksSection
+
 
 @Composable
 fun CharacterDetailRoute(
@@ -192,6 +194,11 @@ fun CharacterDetailScreen(
 
                     ImageCarousel(
                         images = uiState.character.images,
+                        onLinkClick = onLinkClick
+                    )
+
+                    WikiLinksSection(
+                        links = uiState.character.externalLinks,
                         onLinkClick = onLinkClick
                     )
                 }

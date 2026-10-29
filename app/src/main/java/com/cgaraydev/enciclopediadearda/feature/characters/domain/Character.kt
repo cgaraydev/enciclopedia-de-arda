@@ -1,6 +1,7 @@
 package com.cgaraydev.enciclopediadearda.feature.characters.domain
 
 import com.cgaraydev.enciclopediadearda.core.model.CatalogImage
+import com.cgaraydev.enciclopediadearda.core.model.CatalogExternalLink
 
 data class Character(
     val id: String,
@@ -15,5 +16,6 @@ data class Character(
     val family: String? = null,
     val house: String? = null,
     val etymologyHtml: String? = null,
-    val images: List<CatalogImage> = emptyList()
+    val images: List<CatalogImage> = emptyList(),
+    val externalLinks: List<CatalogExternalLink> = emptyList()
 )
