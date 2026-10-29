@@ -17,6 +17,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import com.cgaraydev.enciclopediadearda.feature.favorites.domain.FavoriteReference
 
 @RunWith(AndroidJUnit4::class)
 class RoomFavoritesRepositoryTest {
@@ -99,6 +100,26 @@ class RoomFavoritesRepositoryTest {
         assertTrue(
             dao.observeIsFavorite("location", "shared-id").first()
         )
+    }
+
+    @Test
+    fun exposesKnownReferencesWithoutDeletingUnknownTypes() = runBlocking {
+        val dao = database.favoriteDao()
+
+        repository.setFavorite(ArticleType.CHARACTER, "demo-001", true)
+        dao.insert(FavoriteEntity("future-category", "other-id"))
+
+        assertEquals(
+            listOf(
+                FavoriteReference(
+                    type = ArticleType.CHARACTER,
+                    id = "demo-001"
+                )
+            ),
+            repository.observeFavorites().first()
+        )
+
+        assertEquals(2, dao.observeAll().first().size)
     }
 
     private fun openDatabase() {

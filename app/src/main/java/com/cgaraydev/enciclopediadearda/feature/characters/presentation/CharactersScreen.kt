@@ -29,10 +29,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplorerCard
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.res.painterResource
+import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 
 @Composable
 fun CharactersRoute(
     onCharacterClick: (String) -> Unit,
+    onFavoritesClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CharactersViewModel = hiltViewModel()
 ) {
@@ -42,6 +47,7 @@ fun CharactersRoute(
         uiState = uiState,
         onRetry = viewModel::retry,
         onCharacterClick = onCharacterClick,
+        onFavoritesClick = onFavoritesClick,
         modifier = modifier
     )
 }
@@ -51,13 +57,33 @@ fun CharactersScreen(
     uiState: CharactersUiState,
     onRetry: () -> Unit,
     onCharacterClick: (String) -> Unit,
+    onFavoritesClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        ScreenHeader(
-            labelRes = R.string.characters_title,
-            imageRes = R.drawable.header_characters
-        )
+//        ScreenHeader(
+//            labelRes = R.string.characters_title,
+//            imageRes = R.drawable.header_characters
+//        )
+        Box(modifier = Modifier.fillMaxWidth()) {
+            ScreenHeader(
+                labelRes = R.string.characters_title,
+                imageRes = R.drawable.header_characters
+            )
+
+            IconButton(
+                onClick = onFavoritesClick,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(8.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_favorite_filled),
+                    contentDescription = stringResource(R.string.favorite_header),
+                    tint = TolkienWhite
+                )
+            }
+        }
         Spacer(modifier = Modifier.height(40.dp))
 
         Box(

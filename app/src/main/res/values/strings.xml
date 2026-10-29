@@ -36,4 +36,9 @@
     <string name="add_to_favorites">Añadir a favoritos</string>
     <string name="remove_from_favorites">Quitar de favoritos</string>
     <string name="favorites_access_error">No se pudo acceder a tus favoritos. Inténtalo de nuevo.</string>
+    <string name="favorite_header">Favoritos</string>
+    <string name="no_favorites">tus favoritos comienzan aquí</string>
+    <string name="add_favorites_here">Toca el corazón de un artículo para guardarlo en esta sección.</string>
+    <string name="favorites_load_error">No se pudieron cargar tus favoritos.</string>
+    <string name="view_details">Ver detalles de %1$s</string>
 </resources>

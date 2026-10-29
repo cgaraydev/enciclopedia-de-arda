@@ -10,3 +10,6 @@ data object CharactersDestination : NavKey
 data class CharacterDetailDestination(
     val characterId: String
 ) : NavKey
+
+@Serializable
+data object FavoritesDestination : NavKey

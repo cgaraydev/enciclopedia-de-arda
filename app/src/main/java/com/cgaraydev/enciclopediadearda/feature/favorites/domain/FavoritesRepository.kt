@@ -15,4 +15,6 @@ interface FavoritesRepository {
         id: String,
         isFavorite: Boolean
     )
+
+    fun observeFavorites(): Flow<List<FavoriteReference>>
 }

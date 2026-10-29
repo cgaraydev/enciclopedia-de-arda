@@ -10,6 +10,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.cgaraydev.enciclopediadearda.feature.characters.presentation.CharactersRoute
 import com.cgaraydev.enciclopediadearda.feature.characters.presentation.detail.CharacterDetailRoute
 import androidx.compose.foundation.layout.fillMaxSize
+import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoritesRoute
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
@@ -44,6 +45,11 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
             entry<CharactersDestination> {
                 CharactersRoute(
                     onCharacterClick = openCharacter,
+                    onFavoritesClick = {
+                        if (backStack.lastOrNull() != FavoritesDestination) {
+                            backStack.add(FavoritesDestination)
+                        }
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -51,6 +57,13 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
             entry<CharacterDetailDestination> { destination ->
                 CharacterDetailRoute(
                     characterId = destination.characterId,
+                    onCharacterClick = openCharacter,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
+            entry<FavoritesDestination> {
+                FavoritesRoute(
                     onCharacterClick = openCharacter,
                     modifier = Modifier.fillMaxSize()
                 )
