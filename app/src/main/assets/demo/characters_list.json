@@ -9,7 +9,16 @@
     "titles": "Exploradora y recopiladora de relatos",
     "family": "Mantiene correspondencia con el <a href='character:demo-002'>Cronista de demostración</a>",
     "house": "Archivo de demostración",
-    "etymology": "El nombre <em>Exploradora de demostración</em> describe su función como recopiladora de relatos. El <a href='character:demo-002'>Cronista de demostración</a> conserva sus escritos."
+    "etymology": "El nombre <em>Exploradora de demostración</em> describe su función como recopiladora de relatos. El <a href='character:demo-002'>Cronista de demostración</a> conserva sus escritos.",
+    "images": [
+      {
+        "url": "characters/aegnor/aegnor01.webp",
+        "artist": "Créditos de demostración: <a href='https://github.com/enciclopediadearda-repo/app-images'>repositorio de imágenes</a>"
+      },
+      {
+        "url": "characters/aegnor/aegnor02.webp"
+      }
+    ]
   },
   {
     "id": "demo-002",

@@ -19,8 +19,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.cgaraydev.enciclopediadearda.R
 
-private const val IMAGE_BASE_URL =
-    "https://enciclopediadearda-repo.github.io/app-images/"
+internal const val IMAGE_BASE_URL = "https://enciclopediadearda-repo.github.io/app-images/"
 
 @Composable
 fun DetailImage(

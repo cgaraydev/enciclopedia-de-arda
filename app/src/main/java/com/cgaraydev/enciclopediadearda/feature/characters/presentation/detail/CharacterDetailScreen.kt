@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.ImageCarousel
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -188,6 +189,11 @@ fun CharacterDetailScreen(
                             )
                             Spacer(Modifier.height(20.dp))
                         }
+
+                    ImageCarousel(
+                        images = uiState.character.images,
+                        onLinkClick = onLinkClick
+                    )
                 }
             }
         }

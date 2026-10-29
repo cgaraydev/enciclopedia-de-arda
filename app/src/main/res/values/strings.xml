@@ -22,4 +22,7 @@
     <string name="character_house">Casa</string>
     <string name="characteristic_label">%1$s:</string>
     <string name="etymology">Etimología</string>
+    <string name="images">Imágenes</string>
+    <string name="gallery_image_description">Imagen %1$d de %2$d</string>
+    <string name="error_loading_image">No se pudo cargar la imagen</string>
 </resources>

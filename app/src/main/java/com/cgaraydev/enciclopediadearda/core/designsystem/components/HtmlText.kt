@@ -19,7 +19,8 @@ import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 fun HtmlText(
     html: String,
     onLinkClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     val text = remember(html, onLinkClick) {
         AnnotatedString.fromHtml(
@@ -39,7 +40,7 @@ fun HtmlText(
         text = text,
         style = MaterialTheme.typography.bodyLarge,
         color = TolkienWhite,
-        textAlign = TextAlign.Start,
+        textAlign = textAlign,
         modifier = modifier.fillMaxWidth()
     )
 }
