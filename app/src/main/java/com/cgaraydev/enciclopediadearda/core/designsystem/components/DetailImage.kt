@@ -18,8 +18,7 @@ import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.cgaraydev.enciclopediadearda.R
-
-internal const val IMAGE_BASE_URL = "https://enciclopediadearda-repo.github.io/app-images/"
+import com.cgaraydev.enciclopediadearda.core.images.CatalogImageUrls
 
 @Composable
 fun DetailImage(
@@ -44,7 +43,7 @@ fun DetailImage(
 
     val request = remember(context, path) {
         ImageRequest.Builder(context)
-            .data(IMAGE_BASE_URL + path.trimStart('/'))
+            .data(CatalogImageUrls.resolve(path))
             .crossfade(true)
             .build()
     }

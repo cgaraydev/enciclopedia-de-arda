@@ -72,6 +72,7 @@
     <string name="explore">Explorar</string>
     <string name="home_catalog_load_error">No se pudo cargar el catálogo para explorar.</string>
     <string name="home_catalog_empty">Todavía no hay artículos disponibles para explorar.</string>
+    <string name="featured_article">Artículo destacado</string>
 
     <!-- Personajes: listado -->
     <string name="characters_title">Personajes</string>

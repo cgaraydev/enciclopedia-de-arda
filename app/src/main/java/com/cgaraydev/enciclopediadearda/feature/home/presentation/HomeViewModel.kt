@@ -37,7 +37,8 @@ class HomeViewModel @Inject constructor(
                 val characters = characterRepository.getCharacters()
 
                 _uiState.value = HomeUiState.Content(
-                    characterIds = characters.map { it.id }
+                    characterIds = characters.map { it.id },
+                    featuredCharacter = characters.randomOrNull()
                 )
             } catch (exception: CancellationException) {
                 throw exception

@@ -28,6 +28,7 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeade
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.HomeSectionCard
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.SearchExplorerCard
+import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.FeaturedArticleSection
 
 @Composable
 fun HomeRoute(
@@ -50,6 +51,7 @@ fun HomeRoute(
         },
         onRetry = viewModel::retry,
         onSearchClick = onSearchClick,
+        onFeaturedClick = onCharacterClick,
         modifier = modifier
     )
 }
@@ -61,6 +63,7 @@ fun HomeScreen(
     onRandomArticleClick: () -> Unit,
     onRetry: () -> Unit,
     onSearchClick: () -> Unit,
+    onFeaturedClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -98,6 +101,18 @@ fun HomeScreen(
                 )
 
                 Spacer(Modifier.height(40.dp))
+            }
+
+            val featuredCharacter =
+                (uiState as? HomeUiState.Content)?.featuredCharacter
+
+            if (featuredCharacter != null) {
+                item(key = "featured-article") {
+                    FeaturedArticleSection(
+                        character = featuredCharacter,
+                        onCharacterClick = onFeaturedClick
+                    )
+                }
             }
 
             item(key = "sections-heading") {

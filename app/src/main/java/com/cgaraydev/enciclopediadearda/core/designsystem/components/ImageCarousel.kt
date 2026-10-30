@@ -45,6 +45,7 @@ import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGray04
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
+import com.cgaraydev.enciclopediadearda.core.images.CatalogImageUrls
 
 @Composable
 fun ImageCarousel(
@@ -137,12 +138,7 @@ fun ImageCarousel(
 
             val request = remember(context, image.imagePath) {
                 ImageRequest.Builder(context)
-                    .data(
-                        image.imagePath
-                            ?.trim()
-                            ?.takeIf { it.isNotEmpty() }
-                            ?.let { IMAGE_BASE_URL + it.trimStart('/') }
-                    )
+                    .data(CatalogImageUrls.resolve(image.imagePath))
                     .crossfade(true)
                     .build()
             }
