@@ -53,11 +53,13 @@ import com.cgaraydev.enciclopediadearda.feature.characters.domain.Character
 import com.cgaraydev.enciclopediadearda.ui.theme.RingBearer
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienBlack
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
+import com.cgaraydev.enciclopediadearda.core.model.ArticleReference
+import com.cgaraydev.enciclopediadearda.core.model.CategoryItem
 
 @Composable
 fun FeaturedArticleSection(
-    character: Character,
-    onCharacterClick: (String) -> Unit,
+    article: CategoryItem,
+    onArticleClick: (ArticleReference) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
@@ -70,9 +72,11 @@ fun FeaturedArticleSection(
             contentAlignment = Alignment.Center
         ) {
             FeaturedCard(
-                imagePath = character.imagePath,
-                title = character.name,
-                onClick = { onCharacterClick(character.id) }
+                imagePath = article.imagePath,
+                title = article.name,
+                onClick = {
+                    onArticleClick(article.reference)
+                }
             )
         }
 
