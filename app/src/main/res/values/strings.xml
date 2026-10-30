@@ -58,6 +58,11 @@
     <string name="search_idle_title">explora arda</string>
     <string name="search_empty_title">sin coincidencias</string>
     <string name="search_error_title">no pudimos completar la búsqueda</string>
+    <string name="recent_searches">Búsquedas recientes</string>
+    <string name="clear_search_history">Borrar historial</string>
+    <string name="search_history_loading">cargando búsquedas recientes</string>
+    <string name="search_history_load_error">No se pudo leer el historial.</string>
+    <string name="search_history_update_error">No se pudo actualizar el historial.</string>
 
     <!-- Inicio -->
     <string name="home">Inicio</string>

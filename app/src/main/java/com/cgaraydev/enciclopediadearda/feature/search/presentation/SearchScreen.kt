@@ -59,22 +59,37 @@ import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGolden07
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGray08
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
+import androidx.compose.ui.text.TextRange
+import com.cgaraydev.enciclopediadearda.feature.search.presentation.components.RecentSearchesSection
 
 @Composable
 fun SearchRoute(
     onCharacterClick: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = hiltViewModel()
+    viewModel: SearchViewModel = hiltViewModel(),
+    historyViewModel: SearchHistoryViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val historyState by historyViewModel.uiState.collectAsStateWithLifecycle()
+
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
     SearchScreen(
         query = viewModel.query,
         uiState = uiState,
+        historyState = historyState,
         onRetry = viewModel::retry,
+        onHistoryRetry = historyViewModel::retry,
+        onClearHistory = historyViewModel::clear,
+        onHistorySearch = { term ->
+            viewModel.query.edit {
+                replace(0, length, term)
+                selection = TextRange(term.length)
+            }
+        },
         onCharacterClick = { id ->
+            historyViewModel.record(viewModel.query.text.toString())
             focusManager.clearFocus()
             keyboardController?.hide()
             onCharacterClick(id)
@@ -83,12 +98,15 @@ fun SearchRoute(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
     query: TextFieldState,
     uiState: SearchUiState,
+    historyState: SearchHistoryUiState,
     onRetry: () -> Unit,
+    onHistoryRetry: () -> Unit,
+    onClearHistory: () -> Unit,
+    onHistorySearch: (String) -> Unit,
     onCharacterClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -187,10 +205,47 @@ fun SearchScreen(
         ) { state ->
             when (state) {
                 SearchUiState.Idle -> {
-                    SearchFeedback(
-                        title = stringResource(R.string.search_idle_title),
-                        message = stringResource(R.string.search_hint)
-                    )
+                    when {
+                        historyState.isLoading -> {
+                            SearchFeedback(
+                                title = stringResource(R.string.search_history_loading),
+                                showLoading = true
+                            )
+                        }
+
+                        historyState.loadFailed -> {
+                            SearchFeedback(
+                                title = stringResource(R.string.recent_searches),
+                                message = stringResource(
+                                    R.string.search_history_load_error
+                                ),
+                                onRetry = onHistoryRetry
+                            )
+                        }
+
+                        historyState.entries.isNotEmpty() -> {
+                            RecentSearchesSection(
+                                entries = historyState.entries,
+                                isClearing = historyState.isClearing,
+                                updateFailed = historyState.updateFailed,
+                                onSearchClick = onHistorySearch,
+                                onClearHistory = onClearHistory
+                            )
+                        }
+
+                        else -> {
+                            SearchFeedback(
+                                title = stringResource(R.string.search_idle_title),
+                                message = stringResource(
+                                    if (historyState.updateFailed) {
+                                        R.string.search_history_update_error
+                                    } else {
+                                        R.string.search_hint
+                                    }
+                                )
+                            )
+                        }
+                    }
                 }
 
                 SearchUiState.Searching -> {
