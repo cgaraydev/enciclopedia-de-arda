@@ -1,4 +1,4 @@
-package com.cgaraydev.enciclopediadearda.feature.characters.data
+package com.cgaraydev.enciclopediadearda.core.data.catalog
 
 import com.cgaraydev.enciclopediadearda.core.model.CatalogExternalLink
 import com.cgaraydev.enciclopediadearda.core.model.CatalogLinkSource

@@ -1,8 +1,9 @@
 package com.cgaraydev.enciclopediadearda.feature.characters.data
 
+import com.cgaraydev.enciclopediadearda.core.data.catalog.CatalogImageDto
+import com.cgaraydev.enciclopediadearda.core.data.catalog.WikiUrlDto
 import com.cgaraydev.enciclopediadearda.feature.characters.domain.Character
 import kotlinx.serialization.Serializable
-import com.cgaraydev.enciclopediadearda.core.model.CatalogImage
 
 @Serializable
 internal data class CharacterDto(
@@ -18,7 +19,7 @@ internal data class CharacterDto(
     val family: String? = null,
     val house: String? = null,
     val etymology: String? = null,
-    val images: List<CharacterImageDto>? = null,
+    val images: List<CatalogImageDto>? = null,
     val wikiUrl: WikiUrlDto? = null
 ) {
     fun toDomain(): Character = Character(
@@ -34,18 +35,7 @@ internal data class CharacterDto(
         family = family,
         house = house,
         etymologyHtml = etymology,
-        images = images.orEmpty().map { image ->
-            CatalogImage(
-                imagePath = image.url,
-                artistHtml = image.artist
-            )
-        },
+        images = images.orEmpty().map { it.toDomain() },
         externalLinks = wikiUrl?.toDomain().orEmpty()
     )
 }
-
-@Serializable
-internal data class CharacterImageDto(
-    val url: String? = null,
-    val artist: String? = null
-)

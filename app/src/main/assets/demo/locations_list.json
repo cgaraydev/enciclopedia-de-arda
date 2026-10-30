@@ -1,0 +1,24 @@
+[
+  {
+    "id": "demo-location-001",
+    "name": "Archivo de demostración",
+    "otherNames": "Casa de los relatos",
+    "type": "Archivo",
+    "founded": "Año de demostración",
+    "location": "Valle de demostración",
+    "inhabitants": "El <a href='character:demo-002'>Cronista de demostración</a>",
+    "history": "<p>Este lugar ficticio conserva los relatos de la <a href='character:demo-001'>Exploradora de demostración</a>.</p><p>Una de sus rutas conduce al <a href='location:demo-location-002'>Mirador de demostración</a>.</p>",
+    "etymology": "<p>Nombre creado para comprobar la presentación de los artículos de lugares.</p>",
+    "tags": ["other_locations"],
+    "wikiUrl": {
+      "website": "https://github.com/cgaraydev/enciclopedia-de-arda"
+    }
+  },
+  {
+    "id": "demo-location-002",
+    "name": "Mirador de demostración",
+    "type": "Mirador",
+    "history": "<p>Un lugar ficticio desde el que se observa el valle y el <a href='location:demo-location-001'>Archivo de demostración</a>.</p>",
+    "tags": ["other_locations"]
+  }
+]
