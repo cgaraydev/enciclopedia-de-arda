@@ -41,10 +41,11 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeade
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGolden07
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
 
 @Composable
 fun FavoritesRoute(
-    onCharacterClick: (String) -> Unit,
+    onArticleClick: (ArticleType, String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: FavoritesViewModel = hiltViewModel()
 ) {
@@ -53,7 +54,7 @@ fun FavoritesRoute(
     FavoritesScreen(
         uiState = uiState,
         onRetry = viewModel::retry,
-        onCharacterClick = onCharacterClick,
+        onArticleClick = onArticleClick,
         modifier = modifier
     )
 }
@@ -62,7 +63,7 @@ fun FavoritesRoute(
 fun FavoritesScreen(
     uiState: FavoritesUiState,
     onRetry: () -> Unit,
-    onCharacterClick: (String) -> Unit,
+    onArticleClick: (ArticleType, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (uiState) {
@@ -95,7 +96,7 @@ fun FavoritesScreen(
         }
 
         is FavoritesUiState.Content -> {
-            if (uiState.characters.isEmpty()) {
+            if (uiState.articles.isEmpty()) {
                 EmptyFavoritesSection(modifier = modifier)
             } else {
                 Column(modifier = modifier) {
@@ -110,45 +111,63 @@ fun FavoritesScreen(
                             vertical = 8.dp
                         )
                     ) {
-                        item(key = "characters-heading") {
-                            Text(
-                                text = stringResource(
-                                    R.string.characters_title
-                                ).lowercase(),
-                                style = MaterialTheme.typography.titleMedium,
-                                color = TolkienGold,
-                                modifier = Modifier.semantics { heading() }
-                            )
-                            Spacer(Modifier.height(8.dp))
-                        }
+                        ArticleType.entries.forEach { type ->
+                            val articles = uiState.articles.filter {
+                                it.type == type
+                            }
 
-                        items(
-                            items = uiState.characters,
-                            key = { "character:${it.id}" }
-                        ) { character ->
-                            FavoriteRow(
-                                name = character.name,
-                                onClick = {
-                                    onCharacterClick(character.id)
-                                }
-                            )
-                        }
+                            if (articles.isNotEmpty()) {
+                                item(key = "${type.value}-heading") {
+                                    Text(
+                                        text = stringResource(
+                                            when (type) {
+                                                ArticleType.CHARACTER ->
+                                                    R.string.characters_title
 
-                        item(key = "characters-divider") {
-                            Text(
-                                text = stringResource(R.string.divider_runes),
-                                fontFamily = FontFamily(Font(R.font.dwarf)),
-                                fontSize = 4.sp,
-                                color = TolkienGolden07,
-                                textAlign = TextAlign.Center,
-                                maxLines = 1,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(
-                                        horizontal = 10.dp,
-                                        vertical = 8.dp
+                                                ArticleType.LOCATION ->
+                                                    R.string.locations_title
+                                            }
+                                        ).lowercase(),
+                                        style = MaterialTheme.typography.titleMedium,
+                                        color = TolkienGold,
+                                        modifier = Modifier.semantics { heading() }
                                     )
-                            )
+
+                                    Spacer(Modifier.height(8.dp))
+                                }
+
+                                items(
+                                    items = articles,
+                                    key = { "${it.type.value}:${it.id}" }
+                                ) { article ->
+                                    FavoriteRow(
+                                        name = article.name,
+                                        onClick = {
+                                            onArticleClick(
+                                                article.type,
+                                                article.id
+                                            )
+                                        }
+                                    )
+                                }
+
+                                item(key = "${type.value}-divider") {
+                                    Text(
+                                        text = stringResource(R.string.divider_runes),
+                                        fontFamily = FontFamily(Font(R.font.dwarf)),
+                                        fontSize = 4.sp,
+                                        color = TolkienGolden07,
+                                        textAlign = TextAlign.Center,
+                                        maxLines = 1,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(
+                                                horizontal = 10.dp,
+                                                vertical = 8.dp
+                                            )
+                                    )
+                                }
+                            }
                         }
                     }
                 }

@@ -29,6 +29,8 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.LoadingIndi
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.WikiLinksSection
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
+import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoriteButtonRoute
 
 @Composable
 fun LocationDetailRoute(
@@ -145,6 +147,10 @@ fun LocationDetailScreen(
                     DetailImage(
                         imagePath = location.imagePath,
                         detailName = location.name
+                    )
+                    FavoriteButtonRoute(
+                        articleType = ArticleType.LOCATION,
+                        articleId = location.id
                     )
 
                     Spacer(Modifier.height(20.dp))

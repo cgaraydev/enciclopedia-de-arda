@@ -92,3 +92,15 @@ Pendientes de verificación:
 
 Las pruebas instrumentadas y la distribución quedan para incrementos
 posteriores.
+
+# Pendientes de cierre
+
+- [ ] Inspección visual: márgenes, espacios, títulos y animaciones.
+- [ ] Revisión de accesibilidad y tamaños de texto.
+- [ ] Incorporar disclaimers, créditos y atribuciones.
+- [ ] Implementar el menú de ajustes y definir sus opciones.
+- [ ] Definir la gestión y limpieza de imágenes descargadas.
+- [ ] Decidir la visibilidad del repositorio y la licencia del código.
+- [ ] Revisar los recursos públicos y conservar solo catálogos de demostración.
+- [ ] Validar la versión release y preparar la distribución.
+- [ ] Completar el README de portafolio con imágenes y vídeos.

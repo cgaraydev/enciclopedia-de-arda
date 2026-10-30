@@ -19,6 +19,7 @@ import com.cgaraydev.enciclopediadearda.feature.search.presentation.SearchRoute
 import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.CalendarRoute
 import com.cgaraydev.enciclopediadearda.feature.locations.presentation.LocationsRoute
 import com.cgaraydev.enciclopediadearda.feature.locations.presentation.detail.LocationDetailRoute
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
@@ -111,7 +112,12 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
 
                 entry<FavoritesDestination> {
                     FavoritesRoute(
-                        onCharacterClick = openCharacter,
+                        onArticleClick = { type, id ->
+                            when (type) {
+                                ArticleType.CHARACTER -> openCharacter(id)
+                                ArticleType.LOCATION -> openLocation(id)
+                            }
+                        },
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -122,6 +128,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                             navigateTo(CharactersDestination)
                         },
                         onCharacterClick = openCharacter,
+                        onLocationClick = openLocation,
                         onSearchClick = {
                             navigateTo(SearchDestination)
                         },

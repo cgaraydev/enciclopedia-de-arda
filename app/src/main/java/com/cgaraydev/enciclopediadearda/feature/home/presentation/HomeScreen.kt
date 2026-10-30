@@ -42,11 +42,13 @@ import kotlinx.coroutines.isActive
 import kotlin.time.Duration.Companion.milliseconds
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextButton
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
 
 @Composable
 fun HomeRoute(
     onCharactersClick: () -> Unit,
     onCharacterClick: (String) -> Unit,
+    onLocationClick: (String) -> Unit,
     onSearchClick: () -> Unit,
     onCalendarClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -72,8 +74,12 @@ fun HomeRoute(
         onCharactersClick = onCharactersClick,
         onRandomArticleClick = {
             val content = uiState as? HomeUiState.Content
-            content?.characterIds?.randomOrNull()?.let { id ->
-                onCharacterClick(id)
+
+            content?.articleReferences?.randomOrNull()?.let { article ->
+                when (article.type) {
+                    ArticleType.CHARACTER -> onCharacterClick(article.id)
+                    ArticleType.LOCATION -> onLocationClick(article.id)
+                }
             }
         },
         onRetry = viewModel::retry,
@@ -247,7 +253,7 @@ private fun HomeExplorerSection(
         }
 
         is HomeUiState.Content -> {
-            if (uiState.characterIds.isEmpty()) {
+            if (uiState.articleReferences.isEmpty()) {
                 Text(
                     text = stringResource(R.string.home_catalog_empty),
                     textAlign = TextAlign.Center,

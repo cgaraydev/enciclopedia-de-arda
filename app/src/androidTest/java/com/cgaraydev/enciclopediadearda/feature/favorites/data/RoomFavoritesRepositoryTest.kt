@@ -84,12 +84,24 @@ class RoomFavoritesRepositoryTest {
 
     @Test
     fun sameIdInDifferentCategoriesRemainsIndependent() = runBlocking {
-        val dao = database.favoriteDao()
+        repository.setFavorite(
+            ArticleType.CHARACTER,
+            "shared-id",
+            true
+        )
+        repository.setFavorite(
+            ArticleType.LOCATION,
+            "shared-id",
+            true
+        )
 
-        repository.setFavorite(ArticleType.CHARACTER, "shared-id", true)
-        dao.insert(FavoriteEntity("location", "shared-id"))
+        assertEquals(2, repository.observeFavorites().first().size)
 
-        repository.setFavorite(ArticleType.CHARACTER, "shared-id", false)
+        repository.setFavorite(
+            ArticleType.CHARACTER,
+            "shared-id",
+            false
+        )
 
         assertFalse(
             repository.observeIsFavorite(
@@ -98,7 +110,20 @@ class RoomFavoritesRepositoryTest {
             ).first()
         )
         assertTrue(
-            dao.observeIsFavorite("location", "shared-id").first()
+            repository.observeIsFavorite(
+                ArticleType.LOCATION,
+                "shared-id"
+            ).first()
+        )
+
+        assertEquals(
+            listOf(
+                FavoriteReference(
+                    type = ArticleType.LOCATION,
+                    id = "shared-id"
+                )
+            ),
+            repository.observeFavorites().first()
         )
     }
 
@@ -129,5 +154,34 @@ class RoomFavoritesRepositoryTest {
             databaseName
         ).build()
         repository = RoomFavoritesRepository(database.favoriteDao())
+    }
+
+    @Test
+    fun locationFavoriteSurvivesDatabaseReopening() = runBlocking {
+        repository.setFavorite(
+            ArticleType.LOCATION,
+            "demo-location-001",
+            true
+        )
+
+        database.close()
+        openDatabase()
+
+        assertTrue(
+            repository.observeIsFavorite(
+                ArticleType.LOCATION,
+                "demo-location-001"
+            ).first()
+        )
+
+        assertEquals(
+            listOf(
+                FavoriteReference(
+                    type = ArticleType.LOCATION,
+                    id = "demo-location-001"
+                )
+            ),
+            repository.observeFavorites().first()
+        )
     }
 }

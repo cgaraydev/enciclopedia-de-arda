@@ -1,12 +1,12 @@
 package com.cgaraydev.enciclopediadearda.feature.favorites.presentation
 
-import com.cgaraydev.enciclopediadearda.feature.characters.domain.Character
+import com.cgaraydev.enciclopediadearda.feature.favorites.domain.FavoriteArticle
 
 sealed interface FavoritesUiState {
     data object Loading : FavoritesUiState
 
     data class Content(
-        val characters: List<Character>
+        val articles: List<FavoriteArticle>
     ) : FavoritesUiState
 
     data object Error : FavoritesUiState

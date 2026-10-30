@@ -210,35 +210,3 @@ fun CharacterDetailScreen(
         }
     }
 }
-//
-//@Composable
-//private fun CharacterDetailHeader(
-//    title: String,
-//    scrollState: ScrollState
-//) {
-//    val isCollapsed by remember(scrollState) {
-//        derivedStateOf { scrollState.value > 50 }
-//    }
-//
-//    Column(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(horizontal = 16.dp, vertical = 12.dp)
-//            .animateContentSize(),
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Text(
-//            text = title.lowercase(),
-//            style = if (isCollapsed) {
-//                MaterialTheme.typography.titleLarge
-//            } else {
-//                MaterialTheme.typography.displaySmall
-//            },
-//            color = TolkienWhite,
-//            textAlign = TextAlign.Center,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .semantics { heading() }
-//        )
-//    }
-//}
