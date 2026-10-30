@@ -40,12 +40,15 @@ import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.components
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlin.time.Duration.Companion.milliseconds
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TextButton
 
 @Composable
 fun HomeRoute(
     onCharactersClick: () -> Unit,
     onCharacterClick: (String) -> Unit,
     onSearchClick: () -> Unit,
+    onCalendarClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     todayViewModel: TodayInArdaViewModel = hiltViewModel()
@@ -92,6 +95,7 @@ fun HomeRoute(
                 }
             }
         },
+        onCalendarClick = onCalendarClick,
         modifier = modifier
     )
 }
@@ -107,6 +111,7 @@ fun HomeScreen(
     todayState: TodayInArdaUiState,
     onTodayRetry: () -> Unit,
     onCalendarLinkClick: (String) -> Unit,
+    onCalendarClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -159,11 +164,28 @@ fun HomeScreen(
             }
 
             item(key = "today-in-arda") {
-                TodayInArdaSection(
-                    uiState = todayState,
-                    onRetry = onTodayRetry,
-                    onLinkClick = onCalendarLinkClick
-                )
+                Column {
+                    TodayInArdaSection(
+                        uiState = todayState,
+                        onRetry = onTodayRetry,
+                        onLinkClick = onCalendarLinkClick
+                    )
+
+                    TextButton(
+                        onClick = onCalendarClick,
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(horizontal = 16.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.calendar_open),
+                            style = MaterialTheme.typography.titleSmall,
+                            color = TolkienGold
+                        )
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+                }
             }
 
             item(key = "sections-heading") {

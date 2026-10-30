@@ -19,3 +19,6 @@ data object HomeDestination : NavKey
 
 @Serializable
 data object SearchDestination : NavKey
+
+@Serializable
+data object CalendarDestination : NavKey

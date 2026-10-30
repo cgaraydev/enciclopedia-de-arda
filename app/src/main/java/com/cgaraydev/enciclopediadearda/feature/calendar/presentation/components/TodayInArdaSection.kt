@@ -50,7 +50,9 @@ fun TodayInArdaSection(
     uiState: TodayInArdaUiState,
     onRetry: () -> Unit,
     onLinkClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showHeading: Boolean = true,
+    emptyTextRes: Int = R.string.calendar_today_empty
 ) {
     val monthName = remember(uiState.date.month) {
         uiState.date.month
@@ -62,7 +64,9 @@ fun TodayInArdaSection(
     }
 
     Column(modifier = modifier.fillMaxWidth()) {
-        CategoriesHeader(textRes = R.string.today_in_arda)
+        if (showHeading) {
+            CategoriesHeader(textRes = R.string.today_in_arda)
+        }
 
         Column(
             modifier = Modifier
@@ -145,7 +149,7 @@ fun TodayInArdaSection(
                         if (state.events.isEmpty()) {
                             Text(
                                 text = stringResource(
-                                    R.string.calendar_today_empty
+                                    emptyTextRes
                                 ),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = TolkienGray02

@@ -80,6 +80,20 @@
     <string name="calendar_year">%1$s:</string>
     <string name="calendar_today_empty">No hay efemérides registradas para hoy</string>
     <string name="calendar_load_error">No se pudieron cargar las efemérides.</string>
+    <string name="calendar_title">calendario de arda</string>
+    <string name="calendar_open">ver calendario completo →</string>
+    <string name="calendar_select_day">Selecciona un día para consultar sus efemérides.</string>
+    <string name="calendar_day_empty">No hay efemérides registradas para este día.</string>
+
+    <string-array name="calendar_week_days">
+        <item>Lun</item>
+        <item>Mar</item>
+        <item>Mié</item>
+        <item>Jue</item>
+        <item>Vie</item>
+        <item>Sáb</item>
+        <item>Dom</item>
+    </string-array>
 
     <!-- Personajes: listado -->
     <string name="characters_title">Personajes</string>
