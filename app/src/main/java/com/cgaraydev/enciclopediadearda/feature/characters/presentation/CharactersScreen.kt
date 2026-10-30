@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,20 +26,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cgaraydev.enciclopediadearda.R
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplorerCard
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.ui.res.painterResource
-import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplorerCard
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
 
 @Composable
 fun CharactersRoute(
     onCharacterClick: (String) -> Unit,
-    onFavoritesClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CharactersViewModel = hiltViewModel()
 ) {
@@ -47,7 +42,6 @@ fun CharactersRoute(
         uiState = uiState,
         onRetry = viewModel::retry,
         onCharacterClick = onCharacterClick,
-        onFavoritesClick = onFavoritesClick,
         modifier = modifier
     )
 }
@@ -57,33 +51,32 @@ fun CharactersScreen(
     uiState: CharactersUiState,
     onRetry: () -> Unit,
     onCharacterClick: (String) -> Unit,
-    onFavoritesClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-//        ScreenHeader(
-//            labelRes = R.string.characters_title,
-//            imageRes = R.drawable.header_characters
-//        )
-        Box(modifier = Modifier.fillMaxWidth()) {
-            ScreenHeader(
-                labelRes = R.string.characters_title,
-                imageRes = R.drawable.header_characters
-            )
-
-            IconButton(
-                onClick = onFavoritesClick,
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_favorite_filled),
-                    contentDescription = stringResource(R.string.favorite_header),
-                    tint = TolkienWhite
-                )
-            }
-        }
+        ScreenHeader(
+            labelRes = R.string.characters_title,
+            imageRes = R.drawable.header_characters
+        )
+//        Box(modifier = Modifier.fillMaxWidth()) {
+//            ScreenHeader(
+//                labelRes = R.string.characters_title,
+//                imageRes = R.drawable.header_characters
+//            )
+//
+//            IconButton(
+//                onClick = onFavoritesClick,
+//                modifier = Modifier
+//                    .align(Alignment.TopEnd)
+//                    .padding(8.dp)
+//            ) {
+//                Icon(
+//                    painter = painterResource(R.drawable.ic_favorite_filled),
+//                    contentDescription = stringResource(R.string.favorite_header),
+//                    tint = TolkienWhite
+//                )
+//            }
+//        }
         Spacer(modifier = Modifier.height(40.dp))
 
         Box(

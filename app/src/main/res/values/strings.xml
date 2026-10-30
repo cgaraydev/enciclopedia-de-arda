@@ -41,4 +41,11 @@
     <string name="add_favorites_here">Toca el corazón de un artículo para guardarlo en esta sección.</string>
     <string name="favorites_load_error">No se pudieron cargar tus favoritos.</string>
     <string name="view_details">Ver detalles de %1$s</string>
+    <string name="open_menu">Abrir menú</string>
+    <string name="close_menu">Cerrar menú</string>
+    <string name="navigate_back">Volver</string>
+    <string name="drawer_encyclopedia">Enciclopedia</string>
+    <string name="drawer_other">Otros</string>
+    <string name="expand_section">Expandir sección</string>
+    <string name="collapse_section">Colapsar sección</string>
 </resources>
