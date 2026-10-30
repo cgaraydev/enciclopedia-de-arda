@@ -1,31 +1,39 @@
 <resources>
+
+    <!-- Aplicación -->
     <string name="app_name">Enciclopedia de Arda</string>
-    <string name="characters_title">Personajes</string>
-    <string name="characters_load_error">No se pudieron cargar los personajes.</string>
-    <string name="characters_empty">No hay personajes disponibles.</string>
+
+    <!-- Navegación -->
+    <string name="open_menu">Abrir menú</string>
+    <string name="close_menu">Cerrar menú</string>
+    <string name="navigate_back">Volver</string>
+    <string name="navigate_to_section">Ir a %1$s</string>
+    <string name="drawer_encyclopedia">Enciclopedia</string>
+    <string name="drawer_other">Otros</string>
+    <string name="expand_section">Expandir sección</string>
+    <string name="collapse_section">Colapsar sección</string>
+
+    <!-- Componentes compartidos: acciones y estados -->
     <string name="retry">Reintentar</string>
-    <string name="characters_intro">Desde Melkor hasta Frodo, de Galadriel a Sauron: los personajes de Tolkien son más que nombres en una página, son símbolos vivos de poder, sacrificio y esperanza.</string>
-    <string name="random_article">artículo aleatorio</string>
-    <string name="item_not_found">Elemento no encontrado</string>
-    <string name="character_load_error">No se pudo cargar el personaje.</string>
-    <string name="biography">Biografía</string>
-    <string name="divider_runes">ᚠᛇᚱᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾ</string>
-    <string name="image_content_description">Imagen de %1$s</string>
     <string name="loading_indicator">Indicador de carga</string>
+    <string name="item_not_found">Elemento no encontrado</string>
+    <string name="view_details">Ver detalles de %1$s</string>
+    <string name="random_article">artículo aleatorio</string>
+
+    <!-- Componentes compartidos: secciones de artículos -->
     <string name="characteristics">Características</string>
-    <string name="character_other_names">Otros nombres</string>
-    <string name="character_birth">Nacimiento</string>
-    <string name="character_death">Muerte</string>
-    <string name="character_titles">Títulos</string>
-    <string name="character_partner">Pareja</string>
-    <string name="character_family">Familia</string>
-    <string name="character_house">Casa</string>
     <string name="characteristic_label">%1$s:</string>
+    <string name="biography">Biografía</string>
     <string name="etymology">Etimología</string>
     <string name="images">Imágenes</string>
+    <string name="external_links">Enlaces externos</string>
+
+    <!-- Componentes compartidos: imágenes -->
+    <string name="image_content_description">Imagen de %1$s</string>
     <string name="gallery_image_description">Imagen %1$d de %2$d</string>
     <string name="error_loading_image">No se pudo cargar la imagen</string>
-    <string name="external_links">Enlaces externos</string>
+
+    <!-- Componentes compartidos: enlaces externos -->
     <string name="wiki_tolkien_gateway">Tolkien Gateway (en)</string>
     <string name="wiki_lotr_fandom_en">LotR Fandom (en)</string>
     <string name="wiki_lotr_fandom_es">LotR Fandom (es)</string>
@@ -33,19 +41,44 @@
     <string name="wiki_el_fenomeno">El Fenómeno</string>
     <string name="wiki_website">Sitio web oficial</string>
     <string name="wiki_imdb">IMDb</string>
-    <string name="add_to_favorites">Añadir a favoritos</string>
-    <string name="remove_from_favorites">Quitar de favoritos</string>
-    <string name="favorites_access_error">No se pudo acceder a tus favoritos. Inténtalo de nuevo.</string>
+
+    <!-- Componentes compartidos: decoración -->
+    <string name="divider_runes">ᚠᛇᚱᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾ</string>
+
+    <!-- Inicio -->
+    <string name="home">Inicio</string>
+    <string name="home_header">Enciclopedia de Arda</string>
+    <string name="home_intro">¡Mae govannen, amante de la Tierra Media!\nBienvenido a la Enciclopedia de Arda, donde los relatos de Tolkien cobran vida.\nDescubre personajes, razas, mapas y artefactos; aprende, juega y déjate envolver por la magia que perdura a través del tiempo.</string>
+    <string name="main_sections">Secciones principales</string>
+    <string name="explore">Explorar</string>
+    <string name="home_catalog_load_error">No se pudo cargar el catálogo para explorar.</string>
+    <string name="home_catalog_empty">Todavía no hay artículos disponibles para explorar.</string>
+
+    <!-- Personajes: listado -->
+    <string name="characters_title">Personajes</string>
+    <string name="characters_intro">Desde Melkor hasta Frodo, de Galadriel a Sauron: los personajes de Tolkien son más que nombres en una página, son símbolos vivos de poder, sacrificio y esperanza.</string>
+    <string name="characters_load_error">No se pudieron cargar los personajes.</string>
+    <string name="characters_empty">No hay personajes disponibles.</string>
+
+    <!-- Personajes: detalle -->
+    <string name="character_load_error">No se pudo cargar el personaje.</string>
+    <string name="character_other_names">Otros nombres</string>
+    <string name="character_birth">Nacimiento</string>
+    <string name="character_death">Muerte</string>
+    <string name="character_titles">Títulos</string>
+    <string name="character_partner">Pareja</string>
+    <string name="character_family">Familia</string>
+    <string name="character_house">Casa</string>
+
+    <!-- Favoritos: pantalla -->
     <string name="favorite_header">Favoritos</string>
     <string name="no_favorites">tus favoritos comienzan aquí</string>
     <string name="add_favorites_here">Toca el corazón de un artículo para guardarlo en esta sección.</string>
     <string name="favorites_load_error">No se pudieron cargar tus favoritos.</string>
-    <string name="view_details">Ver detalles de %1$s</string>
-    <string name="open_menu">Abrir menú</string>
-    <string name="close_menu">Cerrar menú</string>
-    <string name="navigate_back">Volver</string>
-    <string name="drawer_encyclopedia">Enciclopedia</string>
-    <string name="drawer_other">Otros</string>
-    <string name="expand_section">Expandir sección</string>
-    <string name="collapse_section">Colapsar sección</string>
+
+    <!-- Favoritos: botón y persistencia -->
+    <string name="add_to_favorites">Añadir a favoritos</string>
+    <string name="remove_from_favorites">Quitar de favoritos</string>
+    <string name="favorites_access_error">No se pudo acceder a tus favoritos. Inténtalo de nuevo.</string>
+
 </resources>

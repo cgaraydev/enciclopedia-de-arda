@@ -114,6 +114,15 @@ fun ArdaAppScaffold(
                         }
                     }
 
+                    AppDrawerItem(
+                        labelRes = R.string.home,
+                        iconRes = R.drawable.ic_home,
+                        selected = selectedDestination == HomeDestination,
+                        onClick = {
+                            selectDestination(HomeDestination)
+                        }
+                    )
+
                     DrawerSection(
                         titleRes = R.string.drawer_encyclopedia
                     ) {

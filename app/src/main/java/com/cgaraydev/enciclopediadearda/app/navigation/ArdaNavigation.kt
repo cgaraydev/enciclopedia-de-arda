@@ -14,10 +14,11 @@ import androidx.navigation3.ui.NavDisplay
 import com.cgaraydev.enciclopediadearda.feature.characters.presentation.CharactersRoute
 import com.cgaraydev.enciclopediadearda.feature.characters.presentation.detail.CharacterDetailRoute
 import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoritesRoute
+import com.cgaraydev.enciclopediadearda.feature.home.presentation.HomeRoute
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
-    val backStack = rememberNavBackStack(CharactersDestination)
+    val backStack = rememberNavBackStack(HomeDestination)
 
     val navigateTo: (NavKey) -> Unit = { destination ->
         val existingIndex = backStack.indexOf(destination)
@@ -28,7 +29,8 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
             }
         } else {
             val isMainDestination =
-                destination == CharactersDestination ||
+                destination == HomeDestination ||
+                        destination == CharactersDestination ||
                         destination == FavoritesDestination
 
             if (isMainDestination) {
@@ -52,8 +54,10 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
     }
 
     val selectedDestination = backStack.lastOrNull {
-        it == CharactersDestination || it == FavoritesDestination
-    } ?: CharactersDestination
+        it == HomeDestination ||
+                it == CharactersDestination ||
+                it == FavoritesDestination
+    } ?: HomeDestination
 
     ArdaAppScaffold(
         selectedDestination = selectedDestination,
@@ -91,6 +95,16 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
 
                 entry<FavoritesDestination> {
                     FavoritesRoute(
+                        onCharacterClick = openCharacter,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                entry<HomeDestination> {
+                    HomeRoute(
+                        onCharactersClick = {
+                            navigateTo(CharactersDestination)
+                        },
                         onCharacterClick = openCharacter,
                         modifier = Modifier.fillMaxSize()
                     )

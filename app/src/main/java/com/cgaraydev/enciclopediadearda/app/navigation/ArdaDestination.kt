@@ -13,3 +13,6 @@ data class CharacterDetailDestination(
 
 @Serializable
 data object FavoritesDestination : NavKey
+
+@Serializable
+data object HomeDestination : NavKey
