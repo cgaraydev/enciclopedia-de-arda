@@ -73,6 +73,13 @@
     <string name="home_catalog_load_error">No se pudo cargar el catálogo para explorar.</string>
     <string name="home_catalog_empty">Todavía no hay artículos disponibles para explorar.</string>
     <string name="featured_article">Artículo destacado</string>
+    <string name="today_in_arda">Hoy en Arda</string>
+
+    <!-- Calendario -->
+    <string name="calendar_date">%1$d de %2$s</string>
+    <string name="calendar_year">%1$s:</string>
+    <string name="calendar_today_empty">No hay efemérides registradas para hoy</string>
+    <string name="calendar_load_error">No se pudieron cargar las efemérides.</string>
 
     <!-- Personajes: listado -->
     <string name="characters_title">Personajes</string>

@@ -29,6 +29,17 @@ import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.Hom
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.SearchExplorerCard
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.FeaturedArticleSection
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
+import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.TodayInArdaUiState
+import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.TodayInArdaViewModel
+import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.components.TodayInArdaSection
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun HomeRoute(
@@ -36,9 +47,22 @@ fun HomeRoute(
     onCharacterClick: (String) -> Unit,
     onSearchClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    todayViewModel: TodayInArdaViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val todayState by todayViewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val uriHandler = LocalUriHandler.current
+
+    LaunchedEffect(lifecycleOwner, todayViewModel) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            while (isActive) {
+                todayViewModel.refresh()
+                delay(60_000.milliseconds)
+            }
+        }
+    }
 
     HomeScreen(
         uiState = uiState,
@@ -52,6 +76,22 @@ fun HomeRoute(
         onRetry = viewModel::retry,
         onSearchClick = onSearchClick,
         onFeaturedClick = onCharacterClick,
+        todayState = todayState,
+        onTodayRetry = todayViewModel::retry,
+        onCalendarLinkClick = { url ->
+            when {
+                url.startsWith("character:") -> {
+                    val id = url.removePrefix("character:")
+                    if (id.isNotBlank()) {
+                        onCharacterClick(id)
+                    }
+                }
+
+                url.startsWith("https://") || url.startsWith("http://") -> {
+                    uriHandler.openUri(url)
+                }
+            }
+        },
         modifier = modifier
     )
 }
@@ -64,6 +104,9 @@ fun HomeScreen(
     onRetry: () -> Unit,
     onSearchClick: () -> Unit,
     onFeaturedClick: (String) -> Unit,
+    todayState: TodayInArdaUiState,
+    onTodayRetry: () -> Unit,
+    onCalendarLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -113,6 +156,14 @@ fun HomeScreen(
                         onCharacterClick = onFeaturedClick
                     )
                 }
+            }
+
+            item(key = "today-in-arda") {
+                TodayInArdaSection(
+                    uiState = todayState,
+                    onRetry = onTodayRetry,
+                    onLinkClick = onCalendarLinkClick
+                )
             }
 
             item(key = "sections-heading") {
