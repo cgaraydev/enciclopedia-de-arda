@@ -14,6 +14,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import com.cgaraydev.enciclopediadearda.core.ui.detail.DetailUiState
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LocationDetailViewModelTest {
@@ -38,14 +39,14 @@ class LocationDetailViewModelTest {
         viewModel.loadLocation("demo-001")
 
         assertEquals(
-            LocationDetailUiState.Loading,
+            DetailUiState.Loading,
             viewModel.uiState.value
         )
 
         advanceUntilIdle()
 
         assertEquals(
-            LocationDetailUiState.Content(repository.location),
+            DetailUiState.Content(repository.location),
             viewModel.uiState.value
         )
     }
@@ -60,7 +61,7 @@ class LocationDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            LocationDetailUiState.NotFound,
+            DetailUiState.NotFound,
             viewModel.uiState.value
         )
     }
@@ -75,7 +76,7 @@ class LocationDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            LocationDetailUiState.Error,
+            DetailUiState.Error,
             viewModel.uiState.value
         )
 
@@ -84,7 +85,7 @@ class LocationDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            LocationDetailUiState.Content(repository.location),
+            DetailUiState.Content(repository.location),
             viewModel.uiState.value
         )
         assertEquals(2, repository.detailRequests)

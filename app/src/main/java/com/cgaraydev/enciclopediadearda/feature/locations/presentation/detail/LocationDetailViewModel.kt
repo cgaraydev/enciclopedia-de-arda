@@ -10,16 +10,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.cgaraydev.enciclopediadearda.core.ui.detail.DetailUiState
+import com.cgaraydev.enciclopediadearda.feature.locations.domain.Location
 
 @HiltViewModel
 class LocationDetailViewModel @Inject constructor(
     private val repository: LocationRepository
 ) : ViewModel() {
 
-    private val _uiState =
-        MutableStateFlow<LocationDetailUiState>(
-            LocationDetailUiState.Loading
-        )
+    private val _uiState = MutableStateFlow<DetailUiState<Location>>(DetailUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
     private var currentId: String? = null
@@ -33,28 +32,28 @@ class LocationDetailViewModel @Inject constructor(
     }
 
     fun retry() {
-        if (_uiState.value != LocationDetailUiState.Error) return
+        if (_uiState.value != DetailUiState.Error) return
 
         currentId?.let { startLoading(it) }
     }
 
     private fun startLoading(id: String) {
         loadJob?.cancel()
-        _uiState.value = LocationDetailUiState.Loading
+        _uiState.value = DetailUiState.Loading
 
         loadJob = viewModelScope.launch {
             try {
                 val location = repository.getLocationById(id)
 
                 _uiState.value = if (location == null) {
-                    LocationDetailUiState.NotFound
+                    DetailUiState.NotFound
                 } else {
-                    LocationDetailUiState.Content(location)
+                    DetailUiState.Content(location)
                 }
             } catch (exception: CancellationException) {
                 throw exception
             } catch (_: Exception) {
-                _uiState.value = LocationDetailUiState.Error
+                _uiState.value = DetailUiState.Error
             }
         }
     }

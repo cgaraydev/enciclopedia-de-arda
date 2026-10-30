@@ -14,6 +14,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import com.cgaraydev.enciclopediadearda.core.ui.detail.DetailUiState
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CharacterDetailViewModelTest {
@@ -38,14 +39,14 @@ class CharacterDetailViewModelTest {
         viewModel.loadCharacter("demo-001")
 
         assertEquals(
-            CharacterDetailUiState.Loading,
+            DetailUiState.Loading,
             viewModel.uiState.value
         )
 
         advanceUntilIdle()
 
         assertEquals(
-            CharacterDetailUiState.Content(repository.character),
+            DetailUiState.Content(repository.character),
             viewModel.uiState.value
         )
     }
@@ -60,7 +61,7 @@ class CharacterDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            CharacterDetailUiState.NotFound,
+            DetailUiState.NotFound,
             viewModel.uiState.value
         )
     }
@@ -75,7 +76,7 @@ class CharacterDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            CharacterDetailUiState.Error,
+            DetailUiState.Error,
             viewModel.uiState.value
         )
 
@@ -84,7 +85,7 @@ class CharacterDetailViewModelTest {
         advanceUntilIdle()
 
         assertEquals(
-            CharacterDetailUiState.Content(repository.character),
+            DetailUiState.Content(repository.character),
             viewModel.uiState.value
         )
         assertEquals(2, repository.detailRequests)

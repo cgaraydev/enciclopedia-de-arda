@@ -10,16 +10,15 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.cgaraydev.enciclopediadearda.core.ui.detail.DetailUiState
+import com.cgaraydev.enciclopediadearda.feature.characters.domain.Character
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
     private val repository: CharacterRepository
 ) : ViewModel() {
 
-    private val _uiState =
-        MutableStateFlow<CharacterDetailUiState>(
-            CharacterDetailUiState.Loading
-        )
+    private val _uiState = MutableStateFlow<DetailUiState<Character>>(DetailUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
     private var currentId: String? = null
@@ -33,28 +32,28 @@ class CharacterDetailViewModel @Inject constructor(
     }
 
     fun retry() {
-        if (_uiState.value != CharacterDetailUiState.Error) return
+        if (_uiState.value != DetailUiState.Error) return
 
         currentId?.let { startLoading(it) }
     }
 
     private fun startLoading(id: String) {
         loadJob?.cancel()
-        _uiState.value = CharacterDetailUiState.Loading
+        _uiState.value = DetailUiState.Loading
 
         loadJob = viewModelScope.launch {
             try {
                 val character = repository.getCharacterById(id)
 
                 _uiState.value = if (character == null) {
-                    CharacterDetailUiState.NotFound
+                    DetailUiState.NotFound
                 } else {
-                    CharacterDetailUiState.Content(character)
+                    DetailUiState.Content(character)
                 }
             } catch (exception: CancellationException) {
                 throw exception
             } catch (_: Exception) {
-                _uiState.value = CharacterDetailUiState.Error
+                _uiState.value = DetailUiState.Error
             }
         }
     }
