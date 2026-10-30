@@ -59,7 +59,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArdaAppScaffold(
-    selectedDestination: NavKey,
+    selectedDestination: NavKey?,
     canGoBack: Boolean,
     onBack: () -> Unit,
     onNavigate: (NavKey) -> Unit,
@@ -143,10 +143,18 @@ fun ArdaAppScaffold(
                         AppDrawerItem(
                             labelRes = R.string.favorite_header,
                             iconRes = R.drawable.ic_favorite_filled,
-                            selected = selectedDestination ==
-                                    FavoritesDestination,
+                            selected = selectedDestination == FavoritesDestination,
                             onClick = {
                                 selectDestination(FavoritesDestination)
+                            }
+                        )
+
+                        AppDrawerItem(
+                            labelRes = R.string.calendar_menu,
+                            iconRes = R.drawable.ic_calendar,
+                            selected = selectedDestination == CalendarDestination,
+                            onClick = {
+                                selectDestination(CalendarDestination)
                             }
                         )
                     }

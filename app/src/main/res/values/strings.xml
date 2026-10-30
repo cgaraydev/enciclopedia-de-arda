@@ -84,6 +84,7 @@
     <string name="calendar_open">ver calendario completo →</string>
     <string name="calendar_select_day">Selecciona un día para consultar sus efemérides.</string>
     <string name="calendar_day_empty">No hay efemérides registradas para este día.</string>
+    <string name="calendar_menu">Calendario</string>
 
     <string-array name="calendar_week_days">
         <item>Lun</item>

@@ -33,7 +33,8 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
             val isMainDestination =
                 destination == HomeDestination ||
                         destination == CharactersDestination ||
-                        destination == FavoritesDestination
+                        destination == FavoritesDestination ||
+                        destination == CalendarDestination
 
             if (isMainDestination) {
                 while (backStack.size > 1) {
@@ -55,11 +56,14 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
         navigateTo(CharacterDetailDestination(id))
     }
 
-    val selectedDestination = backStack.lastOrNull {
-        it == HomeDestination ||
-                it == CharactersDestination ||
-                it == FavoritesDestination
-    } ?: HomeDestination
+    val selectedDestination = when (backStack.lastOrNull()) {
+        is CharacterDetailDestination -> CharactersDestination
+        CalendarDestination -> CalendarDestination
+        CharactersDestination -> CharactersDestination
+        FavoritesDestination -> FavoritesDestination
+        HomeDestination -> HomeDestination
+        else -> null
+    }
 
     ArdaAppScaffold(
         selectedDestination = selectedDestination,
