@@ -20,10 +20,16 @@ import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.CalendarRo
 import com.cgaraydev.enciclopediadearda.feature.locations.presentation.LocationsRoute
 import com.cgaraydev.enciclopediadearda.feature.locations.presentation.detail.LocationDetailRoute
 import com.cgaraydev.enciclopediadearda.core.model.ArticleType
+import androidx.compose.ui.platform.LocalUriHandler
+import com.cgaraydev.enciclopediadearda.core.domain.links.CatalogLinkParser
+import com.cgaraydev.enciclopediadearda.core.model.ArticleReference
+import com.cgaraydev.enciclopediadearda.core.model.CatalogLink
+import com.cgaraydev.enciclopediadearda.feature.home.presentation.HomeNavigationAction
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
     val backStack = rememberNavBackStack(HomeDestination)
+    val uriHandler = LocalUriHandler.current
 
     val navigateTo: (NavKey) -> Unit = { destination ->
         val existingIndex = backStack.indexOf(destination)
@@ -56,12 +62,24 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
         }
     }
 
+    val openArticle: (ArticleReference) -> Unit = { reference ->
+        navigateTo(reference.detailDestination())
+    }
+
     val openCharacter: (String) -> Unit = { id ->
-        navigateTo(CharacterDetailDestination(id))
+        openArticle(ArticleReference(ArticleType.CHARACTER, id))
     }
 
     val openLocation: (String) -> Unit = { id ->
-        navigateTo(LocationDetailDestination(id))
+        openArticle(ArticleReference(ArticleType.LOCATION, id))
+    }
+
+    val openLink: (String) -> Unit = { value ->
+        when (val link = CatalogLinkParser.parse(value)) {
+            is CatalogLink.Article -> openArticle(link.reference)
+            is CatalogLink.External -> uriHandler.openUri(link.url)
+            null -> Unit
+        }
     }
 
     val selectedDestination = when (backStack.lastOrNull()) {
@@ -104,8 +122,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                 entry<CharacterDetailDestination> { destination ->
                     CharacterDetailRoute(
                         characterId = destination.characterId,
-                        onCharacterClick = openCharacter,
-                        onLocationClick = openLocation,
+                        onLinkClick = openLink,
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -113,10 +130,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                 entry<FavoritesDestination> {
                     FavoritesRoute(
                         onArticleClick = { type, id ->
-                            when (type) {
-                                ArticleType.CHARACTER -> openCharacter(id)
-                                ArticleType.LOCATION -> openLocation(id)
-                            }
+                            openArticle(ArticleReference(type, id))
                         },
                         modifier = Modifier.fillMaxSize()
                     )
@@ -124,16 +138,28 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
 
                 entry<HomeDestination> {
                     HomeRoute(
-                        onCharactersClick = {
-                            navigateTo(CharactersDestination)
-                        },
-                        onCharacterClick = openCharacter,
-                        onLocationClick = openLocation,
-                        onSearchClick = {
-                            navigateTo(SearchDestination)
-                        },
-                        onCalendarClick = {
-                            navigateTo(CalendarDestination)
+                        onNavigate = { action ->
+                            when (action) {
+                                is HomeNavigationAction.OpenArticle -> {
+                                    openArticle(action.reference)
+                                }
+
+                                is HomeNavigationAction.OpenSection -> {
+                                    navigateTo(action.type.sectionDestination())
+                                }
+
+                                is HomeNavigationAction.OpenLink -> {
+                                    openLink(action.url)
+                                }
+
+                                HomeNavigationAction.OpenSearch -> {
+                                    navigateTo(SearchDestination)
+                                }
+
+                                HomeNavigationAction.OpenCalendar -> {
+                                    navigateTo(CalendarDestination)
+                                }
+                            }
                         },
                         modifier = Modifier.fillMaxSize()
                     )
@@ -148,7 +174,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
 
                 entry<CalendarDestination> {
                     CalendarRoute(
-                        onCharacterClick = openCharacter,
+                        onLinkClick = openLink,
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -163,8 +189,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                 entry<LocationDetailDestination> { destination ->
                     LocationDetailRoute(
                         locationId = destination.locationId,
-                        onLocationClick = openLocation,
-                        onCharacterClick = openCharacter,
+                        onLinkClick = openLink,
                         modifier = Modifier.fillMaxSize()
                     )
                 }

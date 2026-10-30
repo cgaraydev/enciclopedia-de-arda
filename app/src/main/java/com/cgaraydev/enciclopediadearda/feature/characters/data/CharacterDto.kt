@@ -20,7 +20,8 @@ internal data class CharacterDto(
     val house: String? = null,
     val etymology: String? = null,
     val images: List<CatalogImageDto>? = null,
-    val wikiUrl: WikiUrlDto? = null
+    val wikiUrl: WikiUrlDto? = null,
+    val tags: List<String>? = null
 ) {
     fun toDomain(): Character = Character(
         id = id,
@@ -36,6 +37,7 @@ internal data class CharacterDto(
         house = house,
         etymologyHtml = etymology,
         images = images.orEmpty().map { it.toDomain() },
-        externalLinks = wikiUrl?.toDomain().orEmpty()
+        externalLinks = wikiUrl?.toDomain().orEmpty(),
+        tags = tags.orEmpty()
     )
 }

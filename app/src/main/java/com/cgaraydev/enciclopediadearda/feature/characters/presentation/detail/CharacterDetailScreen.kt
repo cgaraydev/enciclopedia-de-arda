@@ -38,13 +38,11 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.ArticleDeta
 @Composable
 fun CharacterDetailRoute(
     characterId: String,
-    onCharacterClick: (String) -> Unit,
-    onLocationClick: (String) -> Unit,
+    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CharacterDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val uriHandler = LocalUriHandler.current
 
     LaunchedEffect(characterId) {
         viewModel.loadCharacter(characterId)
@@ -53,24 +51,7 @@ fun CharacterDetailRoute(
     CharacterDetailScreen(
         uiState = uiState,
         onRetry = viewModel::retry,
-        onLinkClick = { url ->
-            when {
-                url.startsWith("character:") -> {
-                    val id = url.removePrefix("character:")
-                    if (id.isNotBlank()) onCharacterClick(id)
-                }
-
-                url.startsWith("location:") -> {
-                    val id = url.removePrefix("location:")
-                    if (id.isNotBlank()) onLocationClick(id)
-                }
-
-                url.startsWith("https://") ||
-                        url.startsWith("http://") -> {
-                    uriHandler.openUri(url)
-                }
-            }
-        },
+        onLinkClick = onLinkClick,
         modifier = modifier
     )
 }

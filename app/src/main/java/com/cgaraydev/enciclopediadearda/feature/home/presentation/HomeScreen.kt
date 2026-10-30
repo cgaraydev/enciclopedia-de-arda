@@ -9,102 +9,27 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cgaraydev.enciclopediadearda.R
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.IntroText
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.LoadingIndicator
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplorerCard
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.SearchExplorerCard
+import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.TodayInArdaUiState
+import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.components.TodayInArdaSection
+import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.FeaturedArticleSection
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.HomeSectionCard
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.SearchExplorerCard
-import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.FeaturedArticleSection
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.repeatOnLifecycle
-import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.TodayInArdaUiState
-import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.TodayInArdaViewModel
-import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.components.TodayInArdaSection
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlin.time.Duration.Companion.milliseconds
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TextButton
-import com.cgaraydev.enciclopediadearda.core.model.ArticleType
-
-@Composable
-fun HomeRoute(
-    onCharactersClick: () -> Unit,
-    onCharacterClick: (String) -> Unit,
-    onLocationClick: (String) -> Unit,
-    onSearchClick: () -> Unit,
-    onCalendarClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel(),
-    todayViewModel: TodayInArdaViewModel = hiltViewModel()
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val todayState by todayViewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val uriHandler = LocalUriHandler.current
-
-    LaunchedEffect(lifecycleOwner, todayViewModel) {
-        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            while (isActive) {
-                todayViewModel.refresh()
-                delay(60_000.milliseconds)
-            }
-        }
-    }
-
-    HomeScreen(
-        uiState = uiState,
-        onCharactersClick = onCharactersClick,
-        onRandomArticleClick = {
-            val content = uiState as? HomeUiState.Content
-
-            content?.articleReferences?.randomOrNull()?.let { article ->
-                when (article.type) {
-                    ArticleType.CHARACTER -> onCharacterClick(article.id)
-                    ArticleType.LOCATION -> onLocationClick(article.id)
-                }
-            }
-        },
-        onRetry = viewModel::retry,
-        onSearchClick = onSearchClick,
-        onFeaturedClick = onCharacterClick,
-        todayState = todayState,
-        onTodayRetry = todayViewModel::retry,
-        onCalendarLinkClick = { url ->
-            when {
-                url.startsWith("character:") -> {
-                    val id = url.removePrefix("character:")
-                    if (id.isNotBlank()) {
-                        onCharacterClick(id)
-                    }
-                }
-
-                url.startsWith("https://") || url.startsWith("http://") -> {
-                    uriHandler.openUri(url)
-                }
-            }
-        },
-        onCalendarClick = onCalendarClick,
-        modifier = modifier
-    )
-}
 
 @Composable
 fun HomeScreen(

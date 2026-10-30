@@ -1,12 +1,14 @@
 package com.cgaraydev.enciclopediadearda.feature.locations.domain
 
+import com.cgaraydev.enciclopediadearda.core.model.ArticleType
 import com.cgaraydev.enciclopediadearda.core.model.CatalogExternalLink
 import com.cgaraydev.enciclopediadearda.core.model.CatalogImage
+import com.cgaraydev.enciclopediadearda.core.model.CategoryItem
 
 data class Location(
-    val id: String,
-    val name: String,
-    val imagePath: String? = null,
+    override val id: String,
+    override val name: String,
+    override val imagePath: String? = null,
     val capital: String? = null,
     val inhabitants: String? = null,
     val governance: String? = null,
@@ -23,5 +25,8 @@ data class Location(
     val etymologyHtml: String? = null,
     val images: List<CatalogImage> = emptyList(),
     val externalLinks: List<CatalogExternalLink> = emptyList(),
-    val tags: List<String> = emptyList()
-)
+    override val tags: List<String> = emptyList()
+) : CategoryItem {
+    override val articleType: ArticleType
+        get() = ArticleType.LOCATION
+}

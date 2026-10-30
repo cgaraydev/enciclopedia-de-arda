@@ -35,13 +35,11 @@ import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoriteB
 @Composable
 fun LocationDetailRoute(
     locationId: String,
-    onLocationClick: (String) -> Unit,
-    onCharacterClick: (String) -> Unit,
+    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: LocationDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val uriHandler = LocalUriHandler.current
 
     LaunchedEffect(locationId) {
         viewModel.loadLocation(locationId)
@@ -50,24 +48,7 @@ fun LocationDetailRoute(
     LocationDetailScreen(
         uiState = uiState,
         onRetry = viewModel::retry,
-        onLinkClick = { url ->
-            when {
-                url.startsWith("location:") -> {
-                    val id = url.removePrefix("location:")
-                    if (id.isNotBlank()) onLocationClick(id)
-                }
-
-                url.startsWith("character:") -> {
-                    val id = url.removePrefix("character:")
-                    if (id.isNotBlank()) onCharacterClick(id)
-                }
-
-                url.startsWith("https://") ||
-                        url.startsWith("http://") -> {
-                    uriHandler.openUri(url)
-                }
-            }
-        },
+        onLinkClick = onLinkClick,
         modifier = modifier
     )
 }

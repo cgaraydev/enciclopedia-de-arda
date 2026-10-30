@@ -25,32 +25,18 @@ import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGray02
 
 @Composable
 fun CalendarRoute(
-    onCharacterClick: (String) -> Unit,
+    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val uriHandler = LocalUriHandler.current
 
     CalendarScreen(
         uiState = uiState,
         onDaySelected = viewModel::selectDay,
         onMonthSelected = viewModel::selectMonth,
         onRetry = viewModel::retry,
-        onLinkClick = { url ->
-            when {
-                url.startsWith("character:") -> {
-                    val id = url.removePrefix("character:")
-                    if (id.isNotBlank()) {
-                        onCharacterClick(id)
-                    }
-                }
-
-                url.startsWith("https://") || url.startsWith("http://") -> {
-                    uriHandler.openUri(url)
-                }
-            }
-        },
+        onLinkClick = onLinkClick,
         modifier = modifier
     )
 }
