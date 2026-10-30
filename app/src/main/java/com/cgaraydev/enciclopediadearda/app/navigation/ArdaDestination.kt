@@ -22,3 +22,11 @@ data object SearchDestination : NavKey
 
 @Serializable
 data object CalendarDestination : NavKey
+
+@Serializable
+data object LocationsDestination : NavKey
+
+@Serializable
+data class LocationDetailDestination(
+    val locationId: String
+) : NavKey

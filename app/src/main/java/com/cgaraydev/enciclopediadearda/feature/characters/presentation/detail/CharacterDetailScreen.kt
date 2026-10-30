@@ -1,13 +1,9 @@
 package com.cgaraydev.enciclopediadearda.feature.characters.presentation.detail
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.DetailImage
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,38 +11,35 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.ImageCarousel
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cgaraydev.enciclopediadearda.R
-import com.cgaraydev.enciclopediadearda.core.designsystem.components.HtmlText
-import com.cgaraydev.enciclopediadearda.ui.theme.TolkienWhite
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CategoriesHeader
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.CharacteristicsSection
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.DetailImage
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.HtmlText
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.ImageCarousel
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.WikiLinksSection
 import com.cgaraydev.enciclopediadearda.core.model.ArticleType
 import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoriteButtonRoute
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.ArticleDetailHeader
 
 
 @Composable
 fun CharacterDetailRoute(
     characterId: String,
     onCharacterClick: (String) -> Unit,
+    onLocationClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CharacterDetailViewModel = hiltViewModel()
 ) {
@@ -65,6 +58,11 @@ fun CharacterDetailRoute(
                 url.startsWith("character:") -> {
                     val id = url.removePrefix("character:")
                     if (id.isNotBlank()) onCharacterClick(id)
+                }
+
+                url.startsWith("location:") -> {
+                    val id = url.removePrefix("location:")
+                    if (id.isNotBlank()) onLocationClick(id)
                 }
 
                 url.startsWith("https://") ||
@@ -127,11 +125,11 @@ fun CharacterDetailScreen(
             val scrollState = rememberScrollState()
 
             Column(modifier = modifier) {
-                CharacterDetailHeader(
+                ArticleDetailHeader(
                     title = uiState.character.name,
-                    scrollState = scrollState
+                    scrollState = scrollState,
+                    onLinkClick = onLinkClick
                 )
-
                 Spacer(Modifier.height(20.dp))
 
                 Column(
@@ -212,35 +210,35 @@ fun CharacterDetailScreen(
         }
     }
 }
-
-@Composable
-private fun CharacterDetailHeader(
-    title: String,
-    scrollState: ScrollState
-) {
-    val isCollapsed by remember(scrollState) {
-        derivedStateOf { scrollState.value > 50 }
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-            .animateContentSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = title.lowercase(),
-            style = if (isCollapsed) {
-                MaterialTheme.typography.titleLarge
-            } else {
-                MaterialTheme.typography.displaySmall
-            },
-            color = TolkienWhite,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .semantics { heading() }
-        )
-    }
-}
+//
+//@Composable
+//private fun CharacterDetailHeader(
+//    title: String,
+//    scrollState: ScrollState
+//) {
+//    val isCollapsed by remember(scrollState) {
+//        derivedStateOf { scrollState.value > 50 }
+//    }
+//
+//    Column(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(horizontal = 16.dp, vertical = 12.dp)
+//            .animateContentSize(),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Text(
+//            text = title.lowercase(),
+//            style = if (isCollapsed) {
+//                MaterialTheme.typography.titleLarge
+//            } else {
+//                MaterialTheme.typography.displaySmall
+//            },
+//            color = TolkienWhite,
+//            textAlign = TextAlign.Center,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .semantics { heading() }
+//        )
+//    }
+//}

@@ -27,6 +27,8 @@
     <string name="etymology">Etimología</string>
     <string name="images">Imágenes</string>
     <string name="external_links">Enlaces externos</string>
+    <string name="history">Historia</string>
+    <string name="category_item_count">(%1$d)</string>
 
     <!-- Componentes compartidos: imágenes -->
     <string name="image_content_description">Imagen de %1$s</string>
@@ -96,13 +98,11 @@
         <item>Dom</item>
     </string-array>
 
-    <!-- Personajes: listado -->
+    <!-- Personajes -->
     <string name="characters_title">Personajes</string>
     <string name="characters_intro">Desde Melkor hasta Frodo, de Galadriel a Sauron: los personajes de Tolkien son más que nombres en una página, son símbolos vivos de poder, sacrificio y esperanza.</string>
     <string name="characters_load_error">No se pudieron cargar los personajes.</string>
     <string name="characters_empty">No hay personajes disponibles.</string>
-
-    <!-- Personajes: detalle -->
     <string name="character_load_error">No se pudo cargar el personaje.</string>
     <string name="character_other_names">Otros nombres</string>
     <string name="character_birth">Nacimiento</string>
@@ -111,6 +111,25 @@
     <string name="character_partner">Pareja</string>
     <string name="character_family">Familia</string>
     <string name="character_house">Casa</string>
+
+    <!-- Lugares -->
+    <string name="locations_title">Lugares</string>
+    <string name="locations_intro">Cada rincón del mundo de Tolkien encierra historia, belleza o tragedia. Esta sección recorre los reinos, ciudades y paisajes más emblemáticos del legendarium, desde las tierras élficas hasta las fortalezas de la oscuridad.</string>
+    <string name="locations_load_error">No se pudieron cargar los lugares.</string>
+    <string name="locations_empty">No hay lugares disponibles.</string>
+    <string name="location_load_error">No se pudo cargar el lugar.</string>
+    <string name="locations_other">Otros lugares</string>
+    <string name="location_other_names">Otros nombres</string>
+    <string name="location_capital">Capital</string>
+    <string name="location_founded">Fundada</string>
+    <string name="location_destroyed">Destruida</string>
+    <string name="location_position">Ubicación</string>
+    <string name="location_major_towns">Asentamientos</string>
+    <string name="location_regions">Regiones</string>
+    <string name="location_events">Eventos</string>
+    <string name="location_languages">Idiomas</string>
+    <string name="location_inhabitants">Habitantes</string>
+    <string name="location_governance">Gobierno</string>
 
     <!-- Favoritos: pantalla -->
     <string name="favorite_header">Favoritos</string>

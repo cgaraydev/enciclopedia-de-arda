@@ -135,6 +135,15 @@ fun ArdaAppScaffold(
                                 selectDestination(CharactersDestination)
                             }
                         )
+
+                        AppDrawerItem(
+                            labelRes = R.string.locations_title,
+                            iconRes = R.drawable.ic_locations,
+                            selected = selectedDestination == LocationsDestination,
+                            onClick = {
+                                selectDestination(LocationsDestination)
+                            }
+                        )
                     }
 
                     DrawerSection(

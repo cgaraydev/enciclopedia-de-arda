@@ -2,7 +2,7 @@
   {
     "id": "demo-001",
     "name": "Exploradora de demostración",
-    "biography": "<strong>Personaje ficticio</strong> creado para mostrar el funcionamiento de la aplicación.<br>Su historia se relaciona con el <a href='character:demo-002'>Cronista de demostración</a>.",
+    "biography": "<strong>Personaje ficticio</strong> creado para mostrar el funcionamiento de la aplicación.<br>Su historia se relaciona con el <a href='character:demo-002'>Cronista de demostración</a>.<p>Sus relatos se conservan en el <a href='location:demo-location-001'>Archivo de demostración</a>.</p>",
     "poster": "characters/aegnor/aegnor01.webp",
     "otherNames": "La caminante del archivo",
     "birth": "Fecha desconocida",

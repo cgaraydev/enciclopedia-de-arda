@@ -17,6 +17,8 @@ import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.Favorites
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.HomeRoute
 import com.cgaraydev.enciclopediadearda.feature.search.presentation.SearchRoute
 import com.cgaraydev.enciclopediadearda.feature.calendar.presentation.CalendarRoute
+import com.cgaraydev.enciclopediadearda.feature.locations.presentation.LocationsRoute
+import com.cgaraydev.enciclopediadearda.feature.locations.presentation.detail.LocationDetailRoute
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
@@ -33,6 +35,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
             val isMainDestination =
                 destination == HomeDestination ||
                         destination == CharactersDestination ||
+                        destination == LocationsDestination ||
                         destination == FavoritesDestination ||
                         destination == CalendarDestination
 
@@ -56,10 +59,16 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
         navigateTo(CharacterDetailDestination(id))
     }
 
+    val openLocation: (String) -> Unit = { id ->
+        navigateTo(LocationDetailDestination(id))
+    }
+
     val selectedDestination = when (backStack.lastOrNull()) {
         is CharacterDetailDestination -> CharactersDestination
-        CalendarDestination -> CalendarDestination
+        is LocationDetailDestination -> LocationsDestination
         CharactersDestination -> CharactersDestination
+        LocationsDestination -> LocationsDestination
+        CalendarDestination -> CalendarDestination
         FavoritesDestination -> FavoritesDestination
         HomeDestination -> HomeDestination
         else -> null
@@ -95,6 +104,7 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                     CharacterDetailRoute(
                         characterId = destination.characterId,
                         onCharacterClick = openCharacter,
+                        onLocationClick = openLocation,
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -131,6 +141,22 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
 
                 entry<CalendarDestination> {
                     CalendarRoute(
+                        onCharacterClick = openCharacter,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                entry<LocationsDestination> {
+                    LocationsRoute(
+                        onLocationClick = openLocation,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                entry<LocationDetailDestination> { destination ->
+                    LocationDetailRoute(
+                        locationId = destination.locationId,
+                        onLocationClick = openLocation,
                         onCharacterClick = openCharacter,
                         modifier = Modifier.fillMaxSize()
                     )
