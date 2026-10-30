@@ -27,11 +27,13 @@ import com.cgaraydev.enciclopediadearda.core.designsystem.components.RandomExplo
 import com.cgaraydev.enciclopediadearda.core.designsystem.components.ScreenHeader
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.components.HomeSectionCard
 import com.cgaraydev.enciclopediadearda.ui.theme.TolkienGold
+import com.cgaraydev.enciclopediadearda.core.designsystem.components.SearchExplorerCard
 
 @Composable
 fun HomeRoute(
     onCharactersClick: () -> Unit,
     onCharacterClick: (String) -> Unit,
+    onSearchClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -47,6 +49,7 @@ fun HomeRoute(
             }
         },
         onRetry = viewModel::retry,
+        onSearchClick = onSearchClick,
         modifier = modifier
     )
 }
@@ -57,6 +60,7 @@ fun HomeScreen(
     onCharactersClick: () -> Unit,
     onRandomArticleClick: () -> Unit,
     onRetry: () -> Unit,
+    onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -85,6 +89,12 @@ fun HomeScreen(
                     uiState = uiState,
                     onRandomArticleClick = onRandomArticleClick,
                     onRetry = onRetry
+                )
+
+                Spacer(Modifier.height(20.dp))
+
+                SearchExplorerCard(
+                    onClick = onSearchClick
                 )
 
                 Spacer(Modifier.height(40.dp))

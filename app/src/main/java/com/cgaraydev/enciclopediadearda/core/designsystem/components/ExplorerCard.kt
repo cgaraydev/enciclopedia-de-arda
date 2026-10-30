@@ -144,3 +144,16 @@ fun RandomExplorerCard(
         onClick = onClick
     )
 }
+
+@Composable
+fun SearchExplorerCard(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    ExplorerCard(
+        modifier = modifier,
+        iconRes = R.drawable.ic_search,
+        label = stringResource(R.string.search_article),
+        onClick = onClick
+    )
+}

@@ -16,3 +16,6 @@ data object FavoritesDestination : NavKey
 
 @Serializable
 data object HomeDestination : NavKey
+
+@Serializable
+data object SearchDestination : NavKey

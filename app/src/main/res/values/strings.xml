@@ -45,6 +45,20 @@
     <!-- Componentes compartidos: decoración -->
     <string name="divider_runes">ᚠᛇᚱᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾᚠᛇᚻᛞᚪᛒᛟᚱᚾᛇᚻᛞᚪᛒᛟᚱᚾᚠᚻᛞᚪᛒᛟᚱᚾᚠᛇᛞᚪᛒᛟᚱᚾᚠᛇᚻᚪᛒᛟᚱᚾᚠᛇᚻᛞᛒᛟᚱᚾᚠᛇᚻᛞᚪᛟᚱᚾ</string>
 
+    <!-- Búsqueda -->
+    <string name="search_article">buscar artículo</string>
+    <string name="search_placeholder">Buscar en los anales de Arda…</string>
+    <string name="clean_search">Limpiar búsqueda</string>
+    <string name="search_hint">Escribe al menos dos caracteres para buscar.</string>
+    <string name="search_loading">Buscando…</string>
+    <string name="search_empty">Prueba con otro nombre o cambia los términos de búsqueda.</string>
+    <string name="search_error">No se pudo realizar la búsqueda.</string>
+    <string name="search_character_type">Personaje</string>
+    <string name="search_title">buscar en arda</string>
+    <string name="search_idle_title">explora arda</string>
+    <string name="search_empty_title">sin coincidencias</string>
+    <string name="search_error_title">no pudimos completar la búsqueda</string>
+
     <!-- Inicio -->
     <string name="home">Inicio</string>
     <string name="home_header">Enciclopedia de Arda</string>

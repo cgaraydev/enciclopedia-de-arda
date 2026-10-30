@@ -15,6 +15,7 @@ import com.cgaraydev.enciclopediadearda.feature.characters.presentation.Characte
 import com.cgaraydev.enciclopediadearda.feature.characters.presentation.detail.CharacterDetailRoute
 import com.cgaraydev.enciclopediadearda.feature.favorites.presentation.FavoritesRoute
 import com.cgaraydev.enciclopediadearda.feature.home.presentation.HomeRoute
+import com.cgaraydev.enciclopediadearda.feature.search.presentation.SearchRoute
 
 @Composable
 fun ArdaNavigation(modifier: Modifier = Modifier) {
@@ -105,6 +106,16 @@ fun ArdaNavigation(modifier: Modifier = Modifier) {
                         onCharactersClick = {
                             navigateTo(CharactersDestination)
                         },
+                        onCharacterClick = openCharacter,
+                        onSearchClick = {
+                            navigateTo(SearchDestination)
+                        },
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                entry<SearchDestination> {
+                    SearchRoute(
                         onCharacterClick = openCharacter,
                         modifier = Modifier.fillMaxSize()
                     )
