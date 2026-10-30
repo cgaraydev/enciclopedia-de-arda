@@ -1,0 +1,20 @@
+[
+  {
+    "day": 30,
+    "month": 10,
+    "year": "Año de demostración",
+    "description": "La <a href='character:demo-001'>Exploradora de demostración</a> entrega sus relatos al archivo. Efeméride ficticia para probar el calendario."
+  },
+  {
+    "day": 30,
+    "month": 10,
+    "year": null,
+    "description": "El <a href='character:demo-002'>Cronista de demostración</a> comienza a organizar los nuevos documentos."
+  },
+  {
+    "day": 31,
+    "month": 10,
+    "year": "Año de demostración",
+    "description": "El archivo publica una nueva recopilación de relatos ficticios."
+  }
+]
